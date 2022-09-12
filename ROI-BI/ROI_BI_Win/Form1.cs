@@ -31,6 +31,7 @@ namespace ROI_BI_Win
             lstService.AddSingleton<ROIReportService>();
             lstService.AddSingleton<ROIMenuService>();
             lstService.AddSingleton<ROIBIReport>();
+            lstService.AddScoped<ROILoginService>();
             lstService.AddSingleton<RoiDto>(_roiDto);
             lstService.AddDbContext<ROIBIContext>(options =>
             {

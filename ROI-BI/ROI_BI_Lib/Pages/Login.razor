@@ -1,6 +1,7 @@
 ﻿@page "/"
 @layout MainLayoutEmpty;
 @using Models.Dto;
+@inject Data.ROILoginService LoginSvc;
 
 <div id="bg"></div>
 <section class="login roiform" id='login'>
@@ -23,6 +24,6 @@
 
     private void Signin()
     {
-        
+        LoginSvc.SignIn(login);
     }
 }
