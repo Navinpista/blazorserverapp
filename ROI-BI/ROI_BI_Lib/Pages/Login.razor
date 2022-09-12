@@ -1,7 +1,11 @@
 ﻿@page "/"
 @layout MainLayoutEmpty;
-@using Models.Dto;
+@inject ProtectedSessionStorage protectedSessionStore;
+@inject ProtectedLocalStorage protectedLocalStore;
 @inject Data.ROILoginService LoginSvc;
+@using Models.Dto;
+
+
 
 <div id="bg"></div>
 <section class="login roiform" id='login'>
@@ -19,11 +23,13 @@
     </div>
 </section>
 
-@code{
+@code {
     LoginDTO login = new LoginDTO();
 
-    private void Signin()
+    private async void Signin()
     {
-        LoginSvc.SignIn(login);
+        await protectedSessionStore.SetAsync("LoginStatus", "True");
+        var signinResult = LoginSvc.SignIn(login);
+        var loginstatus = await protectedSessionStore.GetAsync<string>("LoginStatus");
     }
 }

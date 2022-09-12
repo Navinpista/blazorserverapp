@@ -9,6 +9,9 @@ using Microsoft.Extensions.Configuration;
 using ROI_BI_Lib.Helpers;
 using System.Net.NetworkInformation;
 using Microsoft.Web.WebView2.WinForms;
+using Microsoft.JSInterop;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Http;
 
 namespace ROI_BI_Win
 {
@@ -25,14 +28,24 @@ namespace ROI_BI_Win
             //lstService.AddBlazorWebView();
             lstService.AddWindowsFormsBlazorWebView();
             lstService.AddBlazorWebViewDeveloperTools();
-            //serviceCollection.AddSingleton<ROIBIContext>();
 
+            //serviceCollection.AddSingleton<ROIBIContext>();
+           // lstService.AddSingleton<Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage>();
             //serviceCollection.AddSingleton<IConfiguration>();
             lstService.AddSingleton<ROIReportService>();
             lstService.AddSingleton<ROIMenuService>();
             lstService.AddSingleton<ROIBIReport>();
             lstService.AddScoped<ROILoginService>();
             lstService.AddSingleton<RoiDto>(_roiDto);
+            lstService.AddDataProtection();
+
+            lstService.AddScoped<Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage.ProtectedSessionStorage>();
+            lstService.AddScoped<Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage.ProtectedLocalStorage>();
+
+
+            //lstService.AddScoped<IJSRuntime>();
+            //lstService.AddScoped<IDataProtectionProvider>();
+
             lstService.AddDbContext<ROIBIContext>(options =>
             {
                 options.UseSqlServer("Data Source=CIT-LP116\\SQLEXPRESS;Initial Catalog=ROIBI;Integrated Security=True");
