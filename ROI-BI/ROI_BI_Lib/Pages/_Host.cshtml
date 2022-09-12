@@ -1,0 +1,49 @@
+﻿@page "/"
+@namespace ROI_BI_Lib
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+}
+
+<html>
+<head>
+    <base href="~/" />
+@*    <link rel="stylesheet" href="_content/ROI_BI_Lib/css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="_content/ROI_BI_Lib/css/site.css" />
+    <link rel="stylesheet" href="ROI_BI_Web.styles.css" />*@
+
+    <script src="~/js/powerbi.min.js"></script>
+
+    <script>
+        window.ShowMyPowerBI = {
+            showReport: function (reportContainer, accessToken, embedUrl, embedReportId) {
+                // Get models. models contains enums that can be used.
+                var models = window['powerbi-client'].models;
+                var config = {
+                    type: 'report',
+                    tokenType: models.TokenType.Embed,
+                    accessToken: accessToken,
+                    embedUrl: embedUrl,
+                    id: embedReportId,
+                    permissions: models.Permissions.All,
+                    settings: {
+                        filterPaneEnabled: true,
+                        navContentPaneEnabled: true
+                    }
+                };
+                // Embed the report and display it within the div container.
+                powerbi.embed(reportContainer, config);
+            },
+        };
+    </script>
+
+</head>
+<body>
+    <component type="typeof(App)" render-mode="ServerPrerendered" />
+</body>
+</html>
+
+
+
+

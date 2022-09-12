@@ -1,0 +1,110 @@
+﻿@page "/ROIBIReport/{reportid}"
+@using System.Net.Http
+@using System.Threading.Tasks
+@using Microsoft.Identity.Client
+@using Microsoft.PowerBI.Api
+@using Microsoft.PowerBI.Api.Models
+@using Microsoft.Rest
+@using Newtonsoft.Json.Linq
+@using Microsoft.Extensions.Configuration
+@using ROIBIApp.Data
+@using ROIBIApp.Models
+@inject IJSRuntime JSRuntime
+@inject IConfiguration _configuration
+@inject ROIReportService ROIReportSvc
+
+<h3>ROI Power BI Report</h3>
+
+@code {
+    private ElementReference PowerBIElement;
+    string TenantID;
+    string ClientID;
+    string ClientSecret;
+    string workspaceId;
+    string reportId;     
+
+
+
+    [Parameter]
+    public string reportid { get; set; }
+
+
+    protected override async void OnParametersSet()
+    {
+       Roireport rd = await ROIReportSvc.GetROIReportdetails(reportid);
+
+        TenantID = rd.TenantId;
+        ClientID = rd.ClientId;
+        ClientSecret = rd.ClientSecret;
+        workspaceId = rd.WorkspaceId;
+        reportId = rd.ReportId;
+    }
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+
+        //    if (firstRender)
+        //    {
+        //        var result = new PowerBIEmbedConfig();
+        //        // Authenticate using created credentials
+        //        AuthenticationResult authenticationResult = null;
+        //        authenticationResult = await DoAuthentication();
+        //        var tokenCredentials =
+        //            new TokenCredentials(authenticationResult.AccessToken, "Bearer");
+        //        using (var client = new PowerBIClient(
+        //            new Uri("https://api.powerbi.com/"), tokenCredentials))
+        //        {
+        //            var report =
+        //                await client.Reports.GetReportInGroupAsync(
+        //                    new Guid(workspaceId),
+        //                    new Guid(reportId));
+        //            var generateTokenRequestParameters =
+        //                new GenerateTokenRequest(accessLevel: "view");
+        //            var tokenResponse =
+        //                await client.Reports.GenerateTokenAsync(
+        //                    new Guid(workspaceId),
+        //                    new Guid(reportId),
+        //                    generateTokenRequestParameters);
+        //            result.EmbedToken = tokenResponse;
+        //            result.EmbedUrl = report.EmbedUrl;
+        //            result.Id = report.Id.ToString();
+        //            await BIReportinterop.CreateReport(
+        //                JSRuntime,
+        //                PowerBIElement,
+        //                tokenResponse.Token,
+        //                report.EmbedUrl,
+        //                report.Id.ToString());
+        //        }
+        //    }
+    }
+
+    private const string AuthorityFormat = "https://login.microsoftonline.com/{0}/v2.0";
+    private const string MSGraphScope = "https://analysis.windows.net/powerbi/api/.default";
+    private async Task<AuthenticationResult> DoAuthentication()
+    {
+        IConfidentialClientApplication daemonClient;
+        daemonClient = ConfidentialClientApplicationBuilder.Create(ClientID)
+            .WithAuthority(string.Format(AuthorityFormat, TenantID))
+            .WithClientSecret(ClientSecret)
+            .Build();
+        AuthenticationResult authResult =
+            await daemonClient.AcquireTokenForClient(new[] { MSGraphScope }).ExecuteAsync();
+        return authResult;
+    }
+}
+
+
+<input type="text" value=@reportid>
+<input type="text" @bind=@TenantID>
+
+<div>@ClientID</div>
+<div>@ClientSecret</div>
+<div>@workspaceId</div>
+<div>@reportId</div>
+<div @ref="@PowerBIElement" style="width:100%;height:600px;max-width: 2000px" />
+
+
+
+
+

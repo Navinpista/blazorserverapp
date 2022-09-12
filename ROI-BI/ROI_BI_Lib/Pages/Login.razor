@@ -1,0 +1,28 @@
+﻿@page "/"
+@layout MainLayoutEmpty;
+@using Models.Dto;
+
+<div id="bg"></div>
+<section class="login roiform" id='login'>
+    <div class="head">
+        <h1 class='company'>ROI-BI</h1>
+    </div>
+    <p class='msg'></p>
+    <div class='form'>
+        <form>
+            <input type="text" placeholder='Username' @bind-value="login.Username" class='text' id='username' required><br>
+            <input type="password" placeholder='••••••••••••••' class='password'><br>
+            <a href="#" class='btn-login' id='do-login' @onclick="Signin">Login</a>
+            <a href="#" class='forgot'> </a>
+        </form>
+    </div>
+</section>
+
+@code{
+    LoginDTO login = new LoginDTO();
+
+    private void Signin()
+    {
+        
+    }
+}
