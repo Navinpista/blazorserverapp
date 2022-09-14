@@ -28,16 +28,16 @@
     public string reportid { get; set; }
 
 
-    protected override async void OnParametersSet()
-    {
-        Roireport rd = await ROIReportSvc.GetROIReportdetails(reportid);
+    //protected override async void OnParametersSet()
+    //{
+    //    Roireport rd = await ROIReportSvc.GetROIReportdetails(reportid);
 
-        TenantID = rd.TenantId;
-        ClientID = rd.ClientId;
-        ClientSecret = rd.ClientSecret;
-        workspaceId = rd.WorkspaceId;
-        reportId = rd.ReportId;
-    }
+    //    TenantID = rd.TenantId;
+    //    ClientID = rd.ClientId;
+    //    ClientSecret = rd.ClientSecret;
+    //    workspaceId = rd.WorkspaceId;
+    //    reportId = rd.ReportId;
+    //}
 
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -51,39 +51,50 @@
         workspaceId = rd.WorkspaceId;
         reportId = rd.ReportId;
 
-        if (firstRender)
-        {
-            var result = new PowerBIEmbedConfig();
-            // Authenticate using created credentials
-            AuthenticationResult authenticationResult = null;
-            authenticationResult = await DoAuthentication();
-            var tokenCredentials =
-                new TokenCredentials(authenticationResult.AccessToken, "Bearer");
-            using (var client = new PowerBIClient(
-                new Uri("https://api.powerbi.com/"), tokenCredentials))
+        //if (firstRender)
+        //{
+            try
             {
-                var report =
-                    await client.Reports.GetReportInGroupAsync(
-                        new Guid(workspaceId),
-                        new Guid(reportId));
-                var generateTokenRequestParameters =
-                    new GenerateTokenRequest(accessLevel: "view");
-                var tokenResponse =
-                    await client.Reports.GenerateTokenAsync(
-                        new Guid(workspaceId),
-                        new Guid(reportId),
-                        generateTokenRequestParameters);
-                result.EmbedToken = tokenResponse;
-                result.EmbedUrl = report.EmbedUrl;
-                result.Id = report.Id.ToString();
-                await BIReportinterop.CreateReport(
-                    JSRuntime,
-                    PowerBIElement,
-                    tokenResponse.Token,
-                    report.EmbedUrl,
-                    report.Id.ToString());
+                var result = new PowerBIEmbedConfig();
+                // Authenticate using created credentials
+                AuthenticationResult authenticationResult = null;
+                authenticationResult = await DoAuthentication();
+                var tokenCredentials =
+                    new TokenCredentials(authenticationResult.AccessToken, "Bearer");
+                using (var client = new PowerBIClient(
+                    new Uri("https://api.powerbi.com/"), tokenCredentials))
+                {
+                    var report =
+                        await client.Reports.GetReportInGroupAsync(
+                            new Guid(workspaceId),
+                            new Guid(reportId));
+
+                    var generateTokenRequestParameters =
+                        new GenerateTokenRequest(accessLevel: "view");
+
+                    var tokenResponse =
+                        await client.Reports.GenerateTokenAsync(
+                            new Guid(workspaceId),
+                            new Guid(reportId),
+                            generateTokenRequestParameters);
+
+                    result.EmbedToken = tokenResponse;
+                    result.EmbedUrl = report.EmbedUrl;
+                    result.Id = report.Id.ToString();
+                    await BIReportinterop.CreateReport(
+                        JSRuntime,
+                        PowerBIElement,
+                        tokenResponse.Token,
+                        report.EmbedUrl,
+                        report.Id.ToString());
+                }
             }
-        }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            
+       // }
     }
 
     private const string AuthorityFormat = "https://login.microsoftonline.com/{0}/v2.0";
@@ -95,7 +106,7 @@
         {
 
             IConfidentialClientApplication daemonClient;
-            daemonClient = ConfidentialClientApplicationBuilder.Create(ClientSecret  /*ClientID*/)
+            daemonClient = ConfidentialClientApplicationBuilder.Create(ClientID)
                 .WithAuthority(string.Format(AuthorityFormat, TenantID))
                 .WithClientSecret(ClientSecret)
                 .Build();
@@ -112,13 +123,13 @@
 }
 
 
-<input type="text" value=@reportid>
-<input type="text" @bind=@TenantID>
-
+@*<input type="text" value=@reportid>*@
+@*<input type="text" @bind=@TenantID>*@
+@*
 <div>@ClientID</div>
 <div>@ClientSecret</div>
 <div>@workspaceId</div>
-<div>@reportId</div>
+<div>@reportId</div>*@
 <div @ref="@PowerBIElement" style="width:100%;height:600px;max-width: 2000px" />
 
 

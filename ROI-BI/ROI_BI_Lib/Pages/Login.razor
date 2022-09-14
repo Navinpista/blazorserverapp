@@ -3,9 +3,8 @@
 @inject ProtectedSessionStorage protectedSessionStore;
 @inject ProtectedLocalStorage protectedLocalStore;
 @inject Data.ROILoginService LoginSvc;
+@inject NavigationManager NavigationMgr;
 @using Models.Dto;
-
-
 
 <div id="bg"></div>
 <section class="login roiform" id='login'>
@@ -31,5 +30,6 @@
         await protectedSessionStore.SetAsync("LoginStatus", "True");
         var signinResult = LoginSvc.SignIn(login);
         var loginstatus = await protectedSessionStore.GetAsync<string>("LoginStatus");
+        NavigationMgr.NavigateTo("/index");
     }
 }

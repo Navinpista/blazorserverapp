@@ -48,7 +48,9 @@ namespace ROI_BI_Win
 
             lstService.AddDbContext<ROIBIContext>(options =>
             {
-                options.UseSqlServer("Data Source=CIT-LP116\\SQLEXPRESS;Initial Catalog=ROIBI;Integrated Security=True");
+                options.UseSqlServer("Data Source=192.168.60.130;Initial Catalog=ROIBI;Integrated Security=True");
+
+                //options.UseSqlServer("Data Source=CIT-LP116\\SQLEXPRESS;Initial Catalog=ROIBI;Integrated Security=True");
             }, ServiceLifetime.Singleton);
 
 
