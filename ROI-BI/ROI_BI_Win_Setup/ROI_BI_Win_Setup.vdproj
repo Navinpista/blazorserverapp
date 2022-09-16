@@ -15,7 +15,163 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_DA85B367B015428BBAF61A47917BE693"
+        "MsmKey" = "8:_04B87F1073104A33A07E67DDFCE96E5E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_1032C75485B84705AACD51E64E9016E4"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_1B8C629147524C9F829118E027F8BCA6"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_27B84EE6A3D3437F94FC91C4DA46486A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2E5C1DCF751549988AD73152B79756C6"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_443FECB6B614447A8D9A9445879A1399"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4B17DF84790F4F97B1749682281A029E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5385AC550AA64E74AB51C1F752725BBA"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_54D0AC53DF204171BBA31C4120F05A76"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5D5FCDEBEE4E469594F8FE44D4151421"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5FA77A887D494EE3A579DCD58867ABB7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_68B9196F8AA0481D93468CBFC2CA71E4"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6E9A49728DE444749A55CE9E52E0C5B7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_873B11A978884BFDBC2FF7FF6887FE80"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_88C3FD163CAA4B2DAB15F4885AA5D6F1"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8BEDD82974EE4D54ADE6071F248F2232"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8D2DBE4056844367955C351D3F474C2B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_90CFDA86C0B04C9DA333287014558188"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A76AC12A7B8C44B28A9C612701134233"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A845708542B14FDCA78CFBED5CDC218B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A904582E3AED4399B7C226027898AE3B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AC4083652C0647C18AFA6147680083A4"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C9D110FBF73549ECB052091DB47B7AFA"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DFE0723EB8FA4E48B44A5C79531F56DB"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E434884C5320420B82D1E742323FD50B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E81182EC6F6E459586065F0919AF111F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FB636AD90B4242068DC941104B1F3417"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -76,6 +232,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -108,6 +272,486 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_04B87F1073104A33A07E67DDFCE96E5E"
+            {
+            "SourcePath" = "8:D:\\ROI\\ROI_Publish\\wwwroot\\_content\\ROI_BI_Lib\\img\\background.jpg"
+            "TargetName" = "8:background.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_5714749407D641ACBFA6AFBCE17E4A55"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1032C75485B84705AACD51E64E9016E4"
+            {
+            "SourcePath" = "8:D:\\ROI\\ROI_Publish\\wwwroot\\_content\\ROI_BI_Lib\\favicon.ico"
+            "TargetName" = "8:favicon.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_97FD2844CC6843178DFCE846C42F68D9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1B8C629147524C9F829118E027F8BCA6"
+            {
+            "SourcePath" = "8:D:\\ROI\\ROI_Publish\\wwwroot\\_content\\ROI_BI_Lib\\css\\open-iconic\\font\\fonts\\open-iconic.eot"
+            "TargetName" = "8:open-iconic.eot"
+            "Tag" = "8:"
+            "Folder" = "8:_951D890E7DCE41FC8A3C8D5CC1A038AD"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_27B84EE6A3D3437F94FC91C4DA46486A"
+            {
+            "SourcePath" = "8:D:\\ROI\\ROI_Publish\\wwwroot\\_content\\ROI_BI_Lib\\css\\open-iconic\\README.md"
+            "TargetName" = "8:README.md"
+            "Tag" = "8:"
+            "Folder" = "8:_19740E063A094B9181A5D0489D32F36D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2E5C1DCF751549988AD73152B79756C6"
+            {
+            "SourcePath" = "8:D:\\ROI\\ROI_Publish\\wwwroot\\ROI_BI_Win.styles.css"
+            "TargetName" = "8:ROI_BI_Win.styles.css"
+            "Tag" = "8:"
+            "Folder" = "8:_A72547308F1F4293B3244DB73D53BDFA"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_443FECB6B614447A8D9A9445879A1399"
+            {
+            "SourcePath" = "8:D:\\ROI\\ROI_Publish\\wwwroot\\_content\\ROI_BI_Lib\\css\\site.css"
+            "TargetName" = "8:site.css"
+            "Tag" = "8:"
+            "Folder" = "8:_82599C8120DC42FAA225AB9D7CD648A5"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4B17DF84790F4F97B1749682281A029E"
+            {
+            "SourcePath" = "8:D:\\ROI\\ROI_Publish\\wwwroot\\_content\\ROI_BI_Lib\\img\\user-icon.png"
+            "TargetName" = "8:user-icon.png"
+            "Tag" = "8:"
+            "Folder" = "8:_5714749407D641ACBFA6AFBCE17E4A55"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5385AC550AA64E74AB51C1F752725BBA"
+            {
+            "SourcePath" = "8:D:\\ROI\\ROI_Publish\\wwwroot\\_content\\ROI_BI_Lib\\css\\open-iconic\\ICON-LICENSE"
+            "TargetName" = "8:ICON-LICENSE"
+            "Tag" = "8:"
+            "Folder" = "8:_19740E063A094B9181A5D0489D32F36D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_54D0AC53DF204171BBA31C4120F05A76"
+            {
+            "SourcePath" = "8:D:\\ROI\\ROI_Publish\\wwwroot\\_content\\ROI_BI_Lib\\css\\open-iconic\\font\\fonts\\open-iconic.otf"
+            "TargetName" = "8:open-iconic.otf"
+            "Tag" = "8:"
+            "Folder" = "8:_951D890E7DCE41FC8A3C8D5CC1A038AD"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5D5FCDEBEE4E469594F8FE44D4151421"
+            {
+            "SourcePath" = "8:D:\\ROI\\ROI_Publish\\wwwroot\\_content\\ROI_BI_Lib\\exampleJsInterop.js"
+            "TargetName" = "8:exampleJsInterop.js"
+            "Tag" = "8:"
+            "Folder" = "8:_97FD2844CC6843178DFCE846C42F68D9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5FA77A887D494EE3A579DCD58867ABB7"
+            {
+            "SourcePath" = "8:D:\\ROI\\ROI_Publish\\wwwroot\\_content\\ROI_BI_Lib\\css\\open-iconic\\font\\fonts\\open-iconic.ttf"
+            "TargetName" = "8:open-iconic.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_951D890E7DCE41FC8A3C8D5CC1A038AD"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_68B9196F8AA0481D93468CBFC2CA71E4"
+            {
+            "SourcePath" = "8:D:\\ROI\\ROI_Publish\\wwwroot\\_content\\ROI_BI_Lib\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
+            "TargetName" = "8:open-iconic.woff"
+            "Tag" = "8:"
+            "Folder" = "8:_951D890E7DCE41FC8A3C8D5CC1A038AD"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_873B11A978884BFDBC2FF7FF6887FE80"
+            {
+            "SourcePath" = "8:D:\\ROI\\ROI_Publish\\wwwroot\\_content\\ROI_BI_Lib\\img\\bluebg1.jpg"
+            "TargetName" = "8:bluebg1.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_5714749407D641ACBFA6AFBCE17E4A55"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_88C3FD163CAA4B2DAB15F4885AA5D6F1"
+            {
+            "SourcePath" = "8:D:\\ROI\\ROI_Publish\\wwwroot\\_content\\ROI_BI_Lib\\background.png"
+            "TargetName" = "8:background.png"
+            "Tag" = "8:"
+            "Folder" = "8:_97FD2844CC6843178DFCE846C42F68D9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8BEDD82974EE4D54ADE6071F248F2232"
+            {
+            "SourcePath" = "8:D:\\ROI\\ROI_Publish\\wwwroot\\_content\\ROI_BI_Lib\\css\\open-iconic\\FONT-LICENSE"
+            "TargetName" = "8:FONT-LICENSE"
+            "Tag" = "8:"
+            "Folder" = "8:_19740E063A094B9181A5D0489D32F36D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8D2DBE4056844367955C351D3F474C2B"
+            {
+            "SourcePath" = "8:D:\\ROI\\ROI_Publish\\wwwroot\\_content\\ROI_BI_Lib\\css\\bootstrap\\bootstrap.min.css"
+            "TargetName" = "8:bootstrap.min.css"
+            "Tag" = "8:"
+            "Folder" = "8:_9B279F47770C4EB5AE00567E80673D90"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_90CFDA86C0B04C9DA333287014558188"
+            {
+            "SourcePath" = "8:D:\\ROI\\ROI_Publish\\wwwroot\\_content\\ROI_BI_Lib\\css\\bootstrap\\bootstrap.min.css.map"
+            "TargetName" = "8:bootstrap.min.css.map"
+            "Tag" = "8:"
+            "Folder" = "8:_9B279F47770C4EB5AE00567E80673D90"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A76AC12A7B8C44B28A9C612701134233"
+            {
+            "SourcePath" = "8:D:\\ROI\\ROI_Publish\\wwwroot\\_content\\ROI_BI_Lib\\img\\lock-icon.png"
+            "TargetName" = "8:lock-icon.png"
+            "Tag" = "8:"
+            "Folder" = "8:_5714749407D641ACBFA6AFBCE17E4A55"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A845708542B14FDCA78CFBED5CDC218B"
+            {
+            "SourcePath" = "8:D:\\ROI\\ROI_Publish\\wwwroot\\_content\\ROI_BI_Lib\\ROI_BI_Lib.bundle.scp.css"
+            "TargetName" = "8:ROI_BI_Lib.bundle.scp.css"
+            "Tag" = "8:"
+            "Folder" = "8:_97FD2844CC6843178DFCE846C42F68D9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A904582E3AED4399B7C226027898AE3B"
+            {
+            "SourcePath" = "8:D:\\ROI\\ROI_Publish\\wwwroot\\_content\\ROI_BI_Lib\\js\\powerbi.min.js"
+            "TargetName" = "8:powerbi.min.js"
+            "Tag" = "8:"
+            "Folder" = "8:_D469F3CDDA0A4C07A69C8C867119441B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AC4083652C0647C18AFA6147680083A4"
+            {
+            "SourcePath" = "8:D:\\ROI\\ROI_Publish\\wwwroot\\_content\\ROI_BI_Lib\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css"
+            "TargetName" = "8:open-iconic-bootstrap.min.css"
+            "Tag" = "8:"
+            "Folder" = "8:_BB31879E500B42E3AF5B1D007F27F726"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C9D110FBF73549ECB052091DB47B7AFA"
+            {
+            "SourcePath" = "8:D:\\ROI\\ROI_Publish\\wwwroot\\_content\\ROI_BI_Lib\\img\\bluebg2.jpg"
+            "TargetName" = "8:bluebg2.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_5714749407D641ACBFA6AFBCE17E4A55"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E434884C5320420B82D1E742323FD50B"
+            {
+            "SourcePath" = "8:D:\\ROI\\ROI_Publish\\wwwroot\\_content\\ROI_BI_Lib\\img\\bluebg3.jpg"
+            "TargetName" = "8:bluebg3.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_5714749407D641ACBFA6AFBCE17E4A55"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E81182EC6F6E459586065F0919AF111F"
+            {
+            "SourcePath" = "8:D:\\ROI\\ROI_Publish\\wwwroot\\_content\\ROI_BI_Lib\\css\\open-iconic\\font\\fonts\\open-iconic.svg"
+            "TargetName" = "8:open-iconic.svg"
+            "Tag" = "8:"
+            "Folder" = "8:_951D890E7DCE41FC8A3C8D5CC1A038AD"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -124,6 +768,127 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_A72547308F1F4293B3244DB73D53BDFA"
+                    {
+                    "Name" = "8:wwwroot"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_5CC21278C3284BF59D501241EC9FF622"
+                        "Folders"
+                        {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_D3A3D46A21DB4C5AB5FB30A14B2272C6"
+                            {
+                            "Name" = "8:_content"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_0E46F9DBC42C4382940BF8F0DE6B5228"
+                                "Folders"
+                                {
+                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_97FD2844CC6843178DFCE846C42F68D9"
+                                    {
+                                    "Name" = "8:ROI_BI_Lib"
+                                    "AlwaysCreate" = "11:FALSE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_F1FFFCB818634E318BF6D8BCADFB4895"
+                                        "Folders"
+                                        {
+                                            "{9EF0B969-E518-4E46-987F-47570745A589}:_5714749407D641ACBFA6AFBCE17E4A55"
+                                            {
+                                            "Name" = "8:img"
+                                            "AlwaysCreate" = "11:FALSE"
+                                            "Condition" = "8:"
+                                            "Transitive" = "11:FALSE"
+                                            "Property" = "8:_636EC6D565A4445DA347E623E7A88EBB"
+                                                "Folders"
+                                                {
+                                                }
+                                            }
+                                            "{9EF0B969-E518-4E46-987F-47570745A589}:_82599C8120DC42FAA225AB9D7CD648A5"
+                                            {
+                                            "Name" = "8:css"
+                                            "AlwaysCreate" = "11:FALSE"
+                                            "Condition" = "8:"
+                                            "Transitive" = "11:FALSE"
+                                            "Property" = "8:_FF83E4C59EAA4D5CA1D784556F65193B"
+                                                "Folders"
+                                                {
+                                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_19740E063A094B9181A5D0489D32F36D"
+                                                    {
+                                                    "Name" = "8:open-iconic"
+                                                    "AlwaysCreate" = "11:FALSE"
+                                                    "Condition" = "8:"
+                                                    "Transitive" = "11:FALSE"
+                                                    "Property" = "8:_950D80AADA094516AD58E044938ECC5A"
+                                                        "Folders"
+                                                        {
+                                                            "{9EF0B969-E518-4E46-987F-47570745A589}:_AC1E1761342D4B5F9B5B428A7068911B"
+                                                            {
+                                                            "Name" = "8:font"
+                                                            "AlwaysCreate" = "11:FALSE"
+                                                            "Condition" = "8:"
+                                                            "Transitive" = "11:FALSE"
+                                                            "Property" = "8:_6E625B21F42D4599859CE8F339E579FF"
+                                                                "Folders"
+                                                                {
+                                                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_951D890E7DCE41FC8A3C8D5CC1A038AD"
+                                                                    {
+                                                                    "Name" = "8:fonts"
+                                                                    "AlwaysCreate" = "11:FALSE"
+                                                                    "Condition" = "8:"
+                                                                    "Transitive" = "11:FALSE"
+                                                                    "Property" = "8:_1816DD3645E345C3A9675310F6A929CD"
+                                                                        "Folders"
+                                                                        {
+                                                                        }
+                                                                    }
+                                                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_BB31879E500B42E3AF5B1D007F27F726"
+                                                                    {
+                                                                    "Name" = "8:css"
+                                                                    "AlwaysCreate" = "11:FALSE"
+                                                                    "Condition" = "8:"
+                                                                    "Transitive" = "11:FALSE"
+                                                                    "Property" = "8:_C996BA5422604BAAB6E706CF10DA73CF"
+                                                                        "Folders"
+                                                                        {
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_9B279F47770C4EB5AE00567E80673D90"
+                                                    {
+                                                    "Name" = "8:bootstrap"
+                                                    "AlwaysCreate" = "11:FALSE"
+                                                    "Condition" = "8:"
+                                                    "Transitive" = "11:FALSE"
+                                                    "Property" = "8:_741222507AE8485D8D7FCA7D4DC68BB0"
+                                                        "Folders"
+                                                        {
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            "{9EF0B969-E518-4E46-987F-47570745A589}:_D469F3CDDA0A4C07A69C8C867119441B"
+                                            {
+                                            "Name" = "8:js"
+                                            "AlwaysCreate" = "11:FALSE"
+                                            "Condition" = "8:"
+                                            "Transitive" = "11:FALSE"
+                                            "Property" = "8:_6F01EF8A9D00443EAE6B2DC57333524D"
+                                                "Folders"
+                                                {
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_D8672734901B4974BC675CBB3666CC5B"
@@ -165,7 +930,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ROI_BI_Win_Setup"
         "ProductCode" = "8:{5B9FCE39-834D-4413-834A-861D2E336A86}"
-        "PackageCode" = "8:{37AEF81C-B339-4B85-ABFC-D77B1111FFFB}"
+        "PackageCode" = "8:{CBD6D39E-6621-4EA8-B18F-223D8DB50759}"
         "UpgradeCode" = "8:{5E20E8B9-B215-47D7-A08B-425FF608B741}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -684,7 +1449,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_0A38B853013B4712B610B85A78EA1735"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_18087B99874E42DAA3AA0B878735DFD4"
             {
             "SourcePath" = "8:"
             "TargetName" = "8:"
@@ -704,63 +1469,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:PublishItems"
-            "OutputProjectGuid" = "8:{F8CB2808-41BA-4B93-AFED-2513CA1E0689}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_9EE0316FAC1C438EB72BA11AED86E7BE"
-            {
-            "SourcePath" = "8:"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_9F2C85B3176947AD99D3A929FAF30F64"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:ContentFiles"
-            "OutputProjectGuid" = "8:{53A7477A-455B-49A0-8595-26F4E896BDBE}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_D3533E9C7053410196CE5B2BE3AFEFD4"
-            {
-            "SourcePath" = "8:"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_9F2C85B3176947AD99D3A929FAF30F64"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
+            "OutputConfiguration" = "8:Release|Any CPU"
             "OutputGroupCanonicalName" = "8:ContentFiles"
             "OutputProjectGuid" = "8:{F8CB2808-41BA-4B93-AFED-2513CA1E0689}"
             "ShowKeyOutput" = "11:TRUE"
@@ -768,9 +1477,9 @@
                 {
                 }
             }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_DA85B367B015428BBAF61A47917BE693"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_6E9A49728DE444749A55CE9E52E0C5B7"
             {
-            "SourcePath" = "8:..\\ROI_BI_Win\\obj\\Debug\\net6.0-windows\\apphost.exe"
+            "SourcePath" = "8:..\\ROI_BI_Lib\\obj\\Release\\net6.0\\ROI_BI_Lib.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_9F2C85B3176947AD99D3A929FAF30F64"
@@ -788,9 +1497,121 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
+            "OutputConfiguration" = "8:Release|Any CPU"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{F8CB2808-41BA-4B93-AFED-2513CA1E0689}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_DFE0723EB8FA4E48B44A5C79531F56DB"
+            {
+            "SourcePath" = "8:..\\ROI_BI_Win\\obj\\Release\\net6.0-windows\\apphost.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_9F2C85B3176947AD99D3A929FAF30F64"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:Release|Any CPU"
             "OutputGroupCanonicalName" = "8:PublishItems"
             "OutputProjectGuid" = "8:{53A7477A-455B-49A0-8595-26F4E896BDBE}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_EEBC1E67EA864D699D73B95508096583"
+            {
+            "SourcePath" = "8:"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_9F2C85B3176947AD99D3A929FAF30F64"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:Release|Any CPU"
+            "OutputGroupCanonicalName" = "8:ContentFiles"
+            "OutputProjectGuid" = "8:{53A7477A-455B-49A0-8595-26F4E896BDBE}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_FB636AD90B4242068DC941104B1F3417"
+            {
+            "SourcePath" = "8:..\\ROI_BI_Win\\obj\\Release\\net6.0-windows\\apphost.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_9F2C85B3176947AD99D3A929FAF30F64"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:Release|Any CPU"
+            "OutputGroupCanonicalName" = "8:PublishItems"
+            "OutputProjectGuid" = "8:{53A7477A-455B-49A0-8595-26F4E896BDBE}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_FE453D1FBD024BECB773745177727C08"
+            {
+            "SourcePath" = "8:"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_9F2C85B3176947AD99D3A929FAF30F64"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:Release|Any CPU"
+            "OutputGroupCanonicalName" = "8:PublishItems"
+            "OutputProjectGuid" = "8:{F8CB2808-41BA-4B93-AFED-2513CA1E0689}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {

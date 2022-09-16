@@ -21,56 +21,68 @@ namespace ROI_BI_Win
 
         public Form1()
         {
-            string strConnection = System.Configuration.ConfigurationManager.ConnectionStrings["ROIBIDB"].ConnectionString;
-            var lstService = new ServiceCollection();
-
-            //lstService.WebHost.UseWebRoot("wwwroot").UseStaticWebAssets();
-
-            //lstService.AddBlazorWebView();
-            lstService.AddWindowsFormsBlazorWebView();
-            lstService.AddBlazorWebViewDeveloperTools();
-
-            //serviceCollection.AddSingleton<ROIBIContext>();
-           // lstService.AddSingleton<Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage>();
-            //serviceCollection.AddSingleton<IConfiguration>();
-            lstService.AddSingleton<ROIReportService>();
-            lstService.AddSingleton<ROIMenuService>();
-            lstService.AddSingleton<ROIBIReport>();
-            lstService.AddScoped<ROILoginService>();
-            lstService.AddSingleton<RoiDto>(_roiDto);
-            lstService.AddDataProtection();
-
-            lstService.AddScoped<Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage.ProtectedSessionStorage>();
-            lstService.AddScoped<Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage.ProtectedLocalStorage>();
-
-
-            //lstService.AddScoped<IJSRuntime>();
-            //lstService.AddScoped<IDataProtectionProvider>();
-
-            lstService.AddDbContext<ROIBIContext>(options =>
+            try
             {
-                options.UseSqlServer(strConnection);
-            }, ServiceLifetime.Singleton);
+                //MessageBox.Show("app started");
+                var strConnection = Properties.Settings.Default.ROIBIDB;
+                //MessageBox.Show(strConnection);
+
+                var lstService = new ServiceCollection();
+
+                //lstService.WebHost.UseWebRoot("wwwroot").UseStaticWebAssets();
+
+                //lstService.AddBlazorWebView();
+                lstService.AddWindowsFormsBlazorWebView();
+                lstService.AddBlazorWebViewDeveloperTools();
+
+                //serviceCollection.AddSingleton<ROIBIContext>();
+                // lstService.AddSingleton<Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage>();
+                //serviceCollection.AddSingleton<IConfiguration>();
+                lstService.AddSingleton<ROIReportService>();
+                lstService.AddSingleton<ROIMenuService>();
+                lstService.AddSingleton<ROIBIReport>();
+                lstService.AddScoped<ROILoginService>();
+                lstService.AddSingleton<RoiDto>(_roiDto);
+                lstService.AddDataProtection();
+
+                lstService.AddScoped<Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage.ProtectedSessionStorage>();
+                lstService.AddScoped<Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage.ProtectedLocalStorage>();
 
 
-            //lstService.AddSmart();
+                //lstService.AddScoped<IJSRuntime>();
+                //lstService.AddScoped<IDataProtectionProvider>();
 
-            InitializeComponent();
+                lstService.AddDbContext<ROIBIContext>(options =>
+                {
+                    options.UseSqlServer(strConnection);
+                }, ServiceLifetime.Singleton);
 
-            blazorWebView1.HostPage = @"wwwroot\index.html";
-            //blazorWebView1.HostPage.
-            blazorWebView1.Services = lstService.BuildServiceProvider();
-            blazorWebView1.RootComponents.Add<App>("#app");
 
-            var userData = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "ROI_BI_Win");
-            Directory.CreateDirectory(userData);
-            var creationProperties = new CoreWebView2CreationProperties()
+                //lstService.AddSmart();
+
+                InitializeComponent();
+
+                blazorWebView1.HostPage = @"wwwroot\index.html";
+                //blazorWebView1.HostPage.
+                blazorWebView1.Services = lstService.BuildServiceProvider();
+                blazorWebView1.RootComponents.Add<App>("#app");
+
+                var userData = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "ROI_BI_Win");
+                Directory.CreateDirectory(userData);
+                var creationProperties = new CoreWebView2CreationProperties()
+                {
+                    UserDataFolder = userData
+                };
+                blazorWebView1.WebView.CreationProperties = creationProperties;
+
+
+            }
+            catch (Exception ex)
             {
-                UserDataFolder = userData
-            };
-            blazorWebView1.WebView.CreationProperties = creationProperties;
-
-
+                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.StackTrace);
+                throw;
+            }
             //blazorWebView1.WebView.CoreWebView2.;// .getSettings().setJavaScriptEnabled(true);
 
             //string html = await blazorWebView1.InvokeScriptAsync("eval", new string[] { "document.documentElement.outerHTML;" });

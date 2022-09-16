@@ -66,8 +66,8 @@ a, .btn-link {
 
 body {
     background: #abcdef;
-    display: flex;
-    min-height: 90vh;
+/*    display: flex;
+    min-height: 90vh;*/
 }
 
 
