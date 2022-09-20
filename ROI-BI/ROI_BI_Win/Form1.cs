@@ -12,6 +12,7 @@ using Microsoft.Web.WebView2.WinForms;
 using Microsoft.JSInterop;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Http;
+using MudBlazor.Services;
 
 namespace ROI_BI_Win
 {
@@ -44,6 +45,7 @@ namespace ROI_BI_Win
                 lstService.AddScoped<ROILoginService>();
                 lstService.AddSingleton<RoiDto>(_roiDto);
                 lstService.AddDataProtection();
+                lstService.AddMudServices();
 
                 lstService.AddScoped<Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage.ProtectedSessionStorage>();
                 lstService.AddScoped<Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage.ProtectedLocalStorage>();

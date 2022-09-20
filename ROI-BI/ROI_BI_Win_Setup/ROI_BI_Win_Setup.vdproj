@@ -45,6 +45,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_36FDB1B1AC52418EA932697FAFEBC307"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_443FECB6B614447A8D9A9445879A1399"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -87,12 +93,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_6E9A49728DE444749A55CE9E52E0C5B7"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_873B11A978884BFDBC2FF7FF6887FE80"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -118,6 +118,12 @@
         "Entry"
         {
         "MsmKey" = "8:_90CFDA86C0B04C9DA333287014558188"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_94EAD7F6A5EC4EABA1469CF606B36D56"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -153,12 +159,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_DFE0723EB8FA4E48B44A5C79531F56DB"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_E434884C5320420B82D1E742323FD50B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -166,12 +166,6 @@
         "Entry"
         {
         "MsmKey" = "8:_E81182EC6F6E459586065F0919AF111F"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_FB636AD90B4242068DC941104B1F3417"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -368,6 +362,26 @@
             "TargetName" = "8:ROI_BI_Win.styles.css"
             "Tag" = "8:"
             "Folder" = "8:_A72547308F1F4293B3244DB73D53BDFA"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_36FDB1B1AC52418EA932697FAFEBC307"
+            {
+            "SourcePath" = "8:D:\\ROI\\ROI_Publish\\wwwroot\\_content\\MudBlazor\\MudBlazor.min.js"
+            "TargetName" = "8:MudBlazor.min.js"
+            "Tag" = "8:"
+            "Folder" = "8:_C0C63630B8CB49E893B7015E402C2B56"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -608,6 +622,26 @@
             "TargetName" = "8:bootstrap.min.css.map"
             "Tag" = "8:"
             "Folder" = "8:_9B279F47770C4EB5AE00567E80673D90"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_94EAD7F6A5EC4EABA1469CF606B36D56"
+            {
+            "SourcePath" = "8:D:\\ROI\\ROI_Publish\\wwwroot\\_content\\MudBlazor\\MudBlazor.min.css"
+            "TargetName" = "8:MudBlazor.min.css"
+            "Tag" = "8:"
+            "Folder" = "8:_C0C63630B8CB49E893B7015E402C2B56"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -895,6 +929,17 @@
                                             }
                                         }
                                     }
+                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_C0C63630B8CB49E893B7015E402C2B56"
+                                    {
+                                    "Name" = "8:MudBlazor"
+                                    "AlwaysCreate" = "11:FALSE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_1332C843FFDE4E98A5E1635C854B2E4E"
+                                        "Folders"
+                                        {
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -940,7 +985,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ROI_BI_Win_Setup"
         "ProductCode" = "8:{5B9FCE39-834D-4413-834A-861D2E336A86}"
-        "PackageCode" = "8:{CBD6D39E-6621-4EA8-B18F-223D8DB50759}"
+        "PackageCode" = "8:{EB436C44-0C6B-4D12-A63A-1DBDCA366C84}"
         "UpgradeCode" = "8:{5E20E8B9-B215-47D7-A08B-425FF608B741}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1459,7 +1504,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_18087B99874E42DAA3AA0B878735DFD4"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_4BDD8BD6207F42E18918EB775F8BC72E"
             {
             "SourcePath" = "8:"
             "TargetName" = "8:"
@@ -1487,35 +1532,7 @@
                 {
                 }
             }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_6E9A49728DE444749A55CE9E52E0C5B7"
-            {
-            "SourcePath" = "8:..\\ROI_BI_Lib\\obj\\Release\\net6.0\\ROI_BI_Lib.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_9F2C85B3176947AD99D3A929FAF30F64"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:Release|Any CPU"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{F8CB2808-41BA-4B93-AFED-2513CA1E0689}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_DFE0723EB8FA4E48B44A5C79531F56DB"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_9000869D22044DCF91E2EA029063D350"
             {
             "SourcePath" = "8:..\\ROI_BI_Win\\obj\\Release\\net6.0-windows\\apphost.exe"
             "TargetName" = "8:"
@@ -1543,7 +1560,7 @@
                 {
                 }
             }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_EEBC1E67EA864D699D73B95508096583"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B507E6E9D5664AF2B1C68A70187DBC40"
             {
             "SourcePath" = "8:"
             "TargetName" = "8:"
@@ -1571,35 +1588,7 @@
                 {
                 }
             }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_FB636AD90B4242068DC941104B1F3417"
-            {
-            "SourcePath" = "8:..\\ROI_BI_Win\\obj\\Release\\net6.0-windows\\apphost.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_9F2C85B3176947AD99D3A929FAF30F64"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:Release|Any CPU"
-            "OutputGroupCanonicalName" = "8:PublishItems"
-            "OutputProjectGuid" = "8:{53A7477A-455B-49A0-8595-26F4E896BDBE}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_FE453D1FBD024BECB773745177727C08"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_D303F03C840A4DF7839B06852439BA30"
             {
             "SourcePath" = "8:"
             "TargetName" = "8:"

@@ -1,8 +1,8 @@
 ﻿@using ROI_BI_Lib.Data
 @using ROI_BI_Lib.Models
 @inject ROIMenuService MenuSvc
-
-
+@using System.Reflection
+@using System.Collections;
 
 @code {
     private bool expandSubNav;
@@ -13,6 +13,14 @@
 
     public IEnumerable<Roimenu> lstMenu;
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+
+    string[] MenuItems = new string[] {"Dashboard", "Person"};
+
+    public string GetIconValue(string IconName)
+    {
+        return typeof(Icons.Material.Outlined).GetField(IconName).GetValue(null).ToString();
+    }
 
     private void ToggleNavMenu()
     {
@@ -56,57 +64,38 @@
     }
 }
 
-<div>
-    <div class="top-row ps-3 navbar navbar-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="">ROI</a>
-            <span class="navbar-brand" style="vertical-align:bottom; font-size:smaller">Business Intelligence</span>
-            <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-    </div>
 
+<MudPaper Width="250px" Class="d-inline-flex py-3" Elevation="0">
+    <MudNavMenu Class="mud-width-full" Bordered="true">
 
-    <div @onclick="ToggleNavMenu">
         @if (lstMenu is null)
         {
-            <p><em>Loading...</em></p>
+            <p><MudProgressCircular Color="Color.Default" Indeterminate="true" /></p>
         }
         else
         {
-            <ul class="nav flex-column">
-                @foreach (var menu in lstMenu)
+            @foreach (var menu in lstMenu)
+            {
+                @if (menu.ParentMenuId == 0)
                 {
-                    @if (menu.ParentMenuId == 0)
+                    if (menu.IsGroup)
                     {
-                        <li class="nav-item px-3">
-                            <NavLink class="nav-link" href="@GetLink(menu.NavigateUrl)" @onclick="() => GetIsClicked(menu)">
-                                <span aria-hidden="true" class="@menu.IconName"></span> @menu.MenuName
-                            </NavLink>
+                        <MudNavGroup title="@menu.GroupName" Icon="@GetIconValue(menu.IconName)">
 
-                            <ul class="nav flex-column">
-                                @foreach (var submenu in lstMenu)
-                                {
-                                    @if (menu.MenuId == submenu.ParentMenuId)
-                                    {
-                                        @if (expandSubNav && menu.MenuId == clickedMenu)
-                                        {
-                                            <li class="nav-item px-3">
-                                                <NavLink class="nav-link" href="@GetLink(menu.NavigateUrl)" @onclick="() => GetIsClicked(submenu)">
-                                                    <span aria-hidden="true"></span> @submenu.MenuName
-                                                </NavLink>
-                                            </li>
-                                        }
-                                    }
-                                }
-                            </ul>
-                        </li>
+                            @foreach (var submenu in lstMenu.Where(x => x.ParentMenuId == menu.MenuId))
+                            {
+                                <MudNavLink Href="@GetLink(submenu.NavigateUrl)" Icon="@GetIconValue(submenu.IconName)">@submenu.MenuName</MudNavLink>
+                            }
+                        </MudNavGroup>
+                    }
+                    else
+                    {
+                        <MudNavLink Href="@GetLink(menu.NavigateUrl)" Icon="@GetIconValue(menu.IconName)">@menu.MenuName</MudNavLink>
                     }
                 }
-            </ul>
+               
+            }
         }
+    </MudNavMenu>
+</MudPaper>
 
-    </div>
-
-</div>

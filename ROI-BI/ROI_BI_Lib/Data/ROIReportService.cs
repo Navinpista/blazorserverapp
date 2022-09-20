@@ -12,6 +12,12 @@ namespace ROI_BI_Lib.Data
         }
         public async Task<Roireport> GetROIReportdetails(string reportId)
         {
+
+            if(reportId == "0")
+            {
+                return null;
+            }
+
             return await DbContext.Roireports.Where(x => x.ReportId == reportId).FirstAsync();
         }
     }

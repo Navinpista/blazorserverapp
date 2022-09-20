@@ -2,6 +2,47 @@
 
 <PageTitle>ROI-BI</PageTitle>
 
+
+@code {
+    bool _drawerOpen = true;
+
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+}
+
+<MudThemeProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar Elevation="1">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        <MudText Typo="Typo.h5" Class="ml-3">ROI - Business Intelligence</MudText>
+        <MudSpacer />
+
+        <MudIconButton Icon="@Icons.Material.Outlined.Notifications" Color="Color.Inherit" />
+        <MudIconButton Icon="@Icons.Material.Outlined.Settings" Color="Color.Inherit" />
+        <MudIconButton Icon="@Icons.Material.Outlined.AccountCircle" Color="Color.Inherit" Edge="Edge.End" />
+@*        <MudAvatar Color="Color.Secondary">U</MudAvatar>
+*@
+    </MudAppBar>
+    <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
+        <NavMenu />
+    </MudDrawer>
+    <MudMainContent>
+        <div style="padding:2px" >
+        @Body
+        </div>
+    </MudMainContent>
+</MudLayout>
+
+
+
+
+
+@*
 <div class="page">
     <div class="sidebar">
         <NavMenu />
@@ -16,4 +57,4 @@
             @Body
         </article>
     </main>
-</div>
+</div>*@

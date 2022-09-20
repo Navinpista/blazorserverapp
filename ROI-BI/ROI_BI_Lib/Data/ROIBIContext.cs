@@ -32,10 +32,12 @@ namespace ROI_BI_Lib.Data
 
                 entity.ToTable("ROIMenu");
 
-                entity.Property(e => e.Css).HasMaxLength(100);
-
                 entity.Property(e => e.Description)
                     .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.GroupName)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IconName)
@@ -48,10 +50,6 @@ namespace ROI_BI_Lib.Data
 
                 entity.Property(e => e.NavigateUrl)
                     .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.PageName)
-                    .HasMaxLength(50)
                     .IsUnicode(false);
             });
 

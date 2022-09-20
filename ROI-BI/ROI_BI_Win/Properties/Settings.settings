@@ -2,8 +2,11 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ROI_BI_Win.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="ROIBIDB" Type="System.String" Scope="User">
+    <Setting Name="ROIBIDB_Prod" Type="System.String" Scope="User">
       <Value Profile="(Default)">Data Source=192.168.60.130;Initial Catalog=ROIBI;User ID=roiuser;Password=Congruent@123</Value>
+    </Setting>
+    <Setting Name="ROIBIDB" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data Source=CIT-LP116\SQLEXPRESS;Initial Catalog=ROIBI;Integrated Security=True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

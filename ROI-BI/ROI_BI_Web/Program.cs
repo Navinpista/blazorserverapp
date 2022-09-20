@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.EntityFrameworkCore;
 using ROI_BI_Lib.Data;
 using ROI_BI_Lib.Helpers;
+using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.UseWebRoot("wwwroot").UseStaticWebAssets();
@@ -18,6 +19,7 @@ builder.Services.AddScoped<ROIMenuService>();
 builder.Services.AddScoped<ROIReportService>();
 builder.Services.AddScoped<ROILoginService>();
 builder.Services.AddScoped<RoiDto>();
+builder.Services.AddMudServices();
 
 var Configuration = builder.Configuration;//.GetSection("ConnectionStrings");
 

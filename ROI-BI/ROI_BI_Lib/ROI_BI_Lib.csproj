@@ -29,6 +29,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Identity.Client" Version="4.46.2" />
     <PackageReference Include="Microsoft.PowerBI.Api" Version="4.9.0" />
+    <PackageReference Include="MudBlazor" Version="6.0.15" />
   </ItemGroup>
 
   <ItemGroup>

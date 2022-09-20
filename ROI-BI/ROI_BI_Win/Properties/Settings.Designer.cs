@@ -27,6 +27,18 @@ namespace ROI_BI_Win.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.60.130;Initial Catalog=ROIBI;User ID=roiuser;Password=Congrue" +
             "nt@123")]
+        public string ROIBIDB_Prod {
+            get {
+                return ((string)(this["ROIBIDB_Prod"]));
+            }
+            set {
+                this["ROIBIDB_Prod"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=CIT-LP116\\SQLEXPRESS;Initial Catalog=ROIBI;Integrated Security=True")]
         public string ROIBIDB {
             get {
                 return ((string)(this["ROIBIDB"]));

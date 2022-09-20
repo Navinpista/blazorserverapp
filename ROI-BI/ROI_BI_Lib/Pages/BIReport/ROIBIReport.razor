@@ -21,7 +21,7 @@
     string ClientSecret;
     string workspaceId;
     string reportId;
-
+    string ReportStatusHtml;
 
 
     [Parameter]
@@ -44,15 +44,17 @@
     {
 
         Roireport rd = await ROIReportSvc.GetROIReportdetails(reportid);
+        if (rd is not null)
+        {
+            ReportStatusHtml = "Fetching Report...";
+            TenantID = rd.TenantId;
+            ClientID = rd.ClientId;
+            ClientSecret = rd.ClientSecret;
+            workspaceId = rd.WorkspaceId;
+            reportId = rd.ReportId;
 
-        TenantID = rd.TenantId;
-        ClientID = rd.ClientId;
-        ClientSecret = rd.ClientSecret;
-        workspaceId = rd.WorkspaceId;
-        reportId = rd.ReportId;
-
-        //if (firstRender)
-        //{
+            //if (firstRender)
+            //{
             try
             {
                 var result = new PowerBIEmbedConfig();
@@ -89,12 +91,17 @@
                         report.Id.ToString());
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
-            
-       // }
+
+            // }
+        }
+        else
+        {
+            ReportStatusHtml = "No Reports Found!";
+        }
     }
 
     private const string AuthorityFormat = "https://login.microsoftonline.com/{0}/v2.0";
@@ -130,7 +137,9 @@
 <div>@ClientSecret</div>
 <div>@workspaceId</div>
 <div>@reportId</div>*@
-<div @ref="@PowerBIElement" style="width:100%;height:600px;max-width: 2000px" />
+<div @ref="@PowerBIElement" style="width:100%;height:600px;max-width: 2000px" id="divReport">
+    <MudProgressCircular Color="Color.Default" Indeterminate="true" /> <div id="divReportContainer"> @((MarkupString)ReportStatusHtml)</div>
+</div>
 
 
 
