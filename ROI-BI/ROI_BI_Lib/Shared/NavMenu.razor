@@ -1,8 +1,11 @@
-﻿@using ROI_BI_Lib.Data
+﻿@using System.Text.Json;
+@using ROI_BI_Lib.Data
 @using ROI_BI_Lib.Models
+@using ROI_BI_Lib.Models.Dto
 @inject ROIMenuService MenuSvc
 @using System.Reflection
 @using System.Collections;
+@inject ProtectedSessionStorage protectedSessionStore;
 
 @code {
     private bool expandSubNav;
@@ -11,7 +14,7 @@
     private bool hasPageName = true;
     private int prevClickMenu = 0;
 
-    public IEnumerable<Roimenu> lstMenu;
+    public IEnumerable<MenuDTO> lstMenu;
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
 
@@ -60,7 +63,9 @@
 
     protected override async Task OnInitializedAsync()
     {
-        lstMenu = await MenuSvc.GetROIMenu();
+        var userMenu = await protectedSessionStore.GetAsync<string>("UserMenu");
+        lstMenu = JsonSerializer.Deserialize<List<MenuDTO>>(userMenu.Value);
+        StateHasChanged();
     }
 }
 
@@ -76,21 +81,21 @@
         {
             @foreach (var menu in lstMenu)
             {
-                @if (menu.ParentMenuId == 0)
+                @if (menu.ParentMenuId is null)
                 {
-                    if (menu.IsGroup)
+                    if (menu.IsGroup.Value)
                     {
-                        <MudNavGroup title="@menu.GroupName" Icon="@GetIconValue(menu.IconName)">
+                        <MudNavGroup title="@menu.MenuName" Icon="@GetIconValue(menu.Icon)">
 
                             @foreach (var submenu in lstMenu.Where(x => x.ParentMenuId == menu.MenuId))
                             {
-                                <MudNavLink Href="@GetLink(submenu.NavigateUrl)" Icon="@GetIconValue(submenu.IconName)">@submenu.MenuName</MudNavLink>
+                                <MudNavLink Href="@GetLink(submenu.ReportGuid)" Icon="@GetIconValue(submenu.Icon)">@submenu.MenuName</MudNavLink>
                             }
                         </MudNavGroup>
                     }
                     else
                     {
-                        <MudNavLink Href="@GetLink(menu.NavigateUrl)" Icon="@GetIconValue(menu.IconName)">@menu.MenuName</MudNavLink>
+                        <MudNavLink Href="@GetLink(menu.ReportGuid)" Icon="@GetIconValue(menu.Icon)">@menu.MenuName</MudNavLink>
                     }
                 }
                

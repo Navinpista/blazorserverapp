@@ -18,7 +18,7 @@
         <div class='form'>
             <form>
                 <input type="text" placeholder='Username' @bind-value="login.Username" class='text' id='username' required><br>
-                <input type="password" placeholder='••••••••••••••' class='password'><br>
+                <input type="password" placeholder='••••••••••••••' @bind-value="login.Password" class='password'><br>
                 <a href="#" class='btn-login' id='do-login' @onclick="Signin">Login</a>
                 <a href="#" class='forgot'> </a>
             </form>
@@ -56,6 +56,7 @@
         await protectedSessionStore.SetAsync("LoginStatus", "True");
         var signinResult = LoginSvc.SignIn(login);
         var loginstatus = await protectedSessionStore.GetAsync<string>("LoginStatus");
+        var userMenu = await protectedSessionStore.GetAsync<string>("UserMenu");
         NavigationMgr.NavigateTo("/index");
     }
 }
