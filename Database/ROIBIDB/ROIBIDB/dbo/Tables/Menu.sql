@@ -6,6 +6,9 @@
     [IsGroup]      BIT           NULL,
     [Status]       BIT           NULL,
     [Icon]         VARCHAR (50)  NULL,
+    [sortorder]    SMALLINT      NULL,
     CONSTRAINT [PK_Menu] PRIMARY KEY CLUSTERED ([MenuId] ASC)
 );
+
+
 
