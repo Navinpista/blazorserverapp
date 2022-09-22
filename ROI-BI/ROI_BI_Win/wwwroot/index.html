@@ -20,6 +20,7 @@
     <script>
         window.ShowMyPowerBI = {
             showReport: function (reportContainer, accessToken, embedUrl, embedReportId) {
+                //alert(embedUrl);
                 // Get models. models contains enums that can be used.
                 var models = window['powerbi-client'].models;
                 var config = {
@@ -27,15 +28,21 @@
                     tokenType: models.TokenType.Embed,
                     accessToken: accessToken,
                     embedUrl: embedUrl,
+                    pageView: "fitToWidth",
                     id: embedReportId,
                     permissions: models.Permissions.All,
                     settings: {
-                        filterPaneEnabled: true,
-                        navContentPaneEnabled: true
+                        filterPaneEnabled: false,
+                        navContentPaneEnabled: false,
+                        
                     }
                 };
                 // Embed the report and display it within the div container.
                 powerbi.embed(reportContainer, config);
+                //report = powerbi.get(reportContainer);
+
+                //// Displays the report in full screen mode.
+                //report.fullscreen();
             },
         };
     </script>

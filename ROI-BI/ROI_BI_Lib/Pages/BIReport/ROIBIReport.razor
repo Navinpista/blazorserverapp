@@ -14,6 +14,41 @@
 
 <h3>ROI Power BI Report</h3>
 
+
+@*<MudGrid>
+    <MudItem xs="3">
+        <MudPaper Class="d-flex align-center justify-center mud-width-full py-8"><MudDatePicker Label="Only Calendar"  DisableToolbar="true" /></MudPaper>
+    </MudItem>
+    <MudItem xs="3">
+        <MudPaper Class="d-flex align-center justify-center mud-width-full py-8"><MudDatePicker Label="Only Calendar"  DisableToolbar="true" /></MudPaper>
+    </MudItem>
+    <MudItem xs="6">
+    </MudItem>
+</MudGrid>
+*@
+
+<MudGrid>
+    <MudItem xs="3">
+    <MudPaper Square="true" Class="d-flex justify-space-around">
+        <MudDatePicker Label="From Date" DisableToolbar="true" />
+
+        <MudDivider Vertical="true" FlexItem="true" />
+
+        <MudDatePicker Label="To Date" DisableToolbar="true" />
+    </MudPaper>
+    </MudItem>
+</MudGrid>
+
+
+
+
+
+
+<div style="width:100%;height:600px;max-width: 2000px" id="divReport" @ref="@PowerBIElement">
+    <MudProgressCircular Color="Color.Default" Indeterminate="true" />
+</div>
+
+
 @code {
     private ElementReference PowerBIElement;
     string TenantID;
@@ -44,6 +79,7 @@
     {
 
         Roireport rd = await ROIReportSvc.GetROIReportdetails(reportid);
+
         if (rd is not null)
         {
             ReportStatusHtml = "Fetching Report...";
@@ -57,38 +93,24 @@
             //{
             try
             {
-                var result = new PowerBIEmbedConfig();
-                // Authenticate using created credentials
-                AuthenticationResult authenticationResult = null;
-                authenticationResult = await DoAuthentication();
-                var tokenCredentials =
-                    new TokenCredentials(authenticationResult.AccessToken, "Bearer");
-                using (var client = new PowerBIClient(
-                    new Uri("https://api.powerbi.com/"), tokenCredentials))
+                //var result = new PowerBIEmbedConfig();
+
+
+                AuthenticationResult authenticationResult = await DoAuthentication();
+                var tokenCredentials = new TokenCredentials(authenticationResult.AccessToken, "Bearer");
+                var generateTokenRequestParameters = new GenerateTokenRequest(accessLevel: "view");
+
+
+                using (var client = new PowerBIClient(new Uri("https://api.powerbi.com/"), tokenCredentials))
                 {
-                    var report =
-                        await client.Reports.GetReportInGroupAsync(
-                            new Guid(workspaceId),
-                            new Guid(reportId));
+                    var report = await client.Reports.GetReportInGroupAsync(new Guid(workspaceId), new Guid(reportId));
+                    var tokenResponse = await client.Reports.GenerateTokenAsync(new Guid(workspaceId), new Guid(reportId), generateTokenRequestParameters);
 
-                    var generateTokenRequestParameters =
-                        new GenerateTokenRequest(accessLevel: "view");
+                    //result.EmbedToken = tokenResponse;
+                    //result.EmbedUrl = report.EmbedUrl;
+                    //result.Id = report.Id.ToString();
 
-                    var tokenResponse =
-                        await client.Reports.GenerateTokenAsync(
-                            new Guid(workspaceId),
-                            new Guid(reportId),
-                            generateTokenRequestParameters);
-
-                    result.EmbedToken = tokenResponse;
-                    result.EmbedUrl = report.EmbedUrl;
-                    result.Id = report.Id.ToString();
-                    await BIReportinterop.CreateReport(
-                        JSRuntime,
-                        PowerBIElement,
-                        tokenResponse.Token,
-                        report.EmbedUrl,
-                        report.Id.ToString());
+                    await BIReportinterop.CreateReport(JSRuntime, PowerBIElement, tokenResponse.Token, report.EmbedUrl, report.Id.ToString());
                 }
             }
             catch (Exception ex)
@@ -111,14 +133,12 @@
         AuthenticationResult authResult = default;
         try
         {
-
             IConfidentialClientApplication daemonClient;
             daemonClient = ConfidentialClientApplicationBuilder.Create(ClientID)
                 .WithAuthority(string.Format(AuthorityFormat, TenantID))
                 .WithClientSecret(ClientSecret)
                 .Build();
-            authResult =
-               await daemonClient.AcquireTokenForClient(new[] { MSGraphScope }).ExecuteAsync();
+            authResult = await daemonClient.AcquireTokenForClient(new[] { MSGraphScope }).ExecuteAsync();
         }
         catch (Exception ex)
         {
@@ -137,9 +157,10 @@
 <div>@ClientSecret</div>
 <div>@workspaceId</div>
 <div>@reportId</div>*@
-<div @ref="@PowerBIElement" style="width:100%;height:600px;max-width: 2000px" id="divReport">
+@*<div @ref="@PowerBIElement" style="width:100%;height:600px;max-width: 2000px" id="divReport">
     <MudProgressCircular Color="Color.Default" Indeterminate="true" /> <div id="divReportContainer"> @((MarkupString)ReportStatusHtml)</div>
 </div>
+*@
 
 
 
