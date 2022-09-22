@@ -10,7 +10,7 @@ namespace ROI_BI_Lib.Data
         {
             DbContext = dbContext;
         }
-        public async Task<Roireport> GetROIReportdetails(string reportId)
+        public async Task<Report> GetROIReportdetails(string reportId)
         {
 
             if(reportId == "0")
@@ -18,7 +18,7 @@ namespace ROI_BI_Lib.Data
                 return null;
             }
 
-            return await DbContext.Roireports.Where(x => x.ReportId == reportId).FirstAsync();
+            return await DbContext.Reports.Include(p=> p.Tenant).Where(x => x.ReportGuid == reportId).FirstAsync();
         }
     }
 }

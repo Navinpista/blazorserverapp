@@ -11,9 +11,11 @@ namespace ROI_BI_Lib.Pages.BIReport
            ElementReference reportContainer,
            string accessToken,
            string embedUrl,
-           string embedReportId)
+           string embedReportId,
+           string reportType
+           )
         {
-            return jsRuntime.InvokeAsync<object>("ShowMyPowerBI.showReport", reportContainer, accessToken, embedUrl, embedReportId);
+            return jsRuntime.InvokeAsync<object>("ShowMyPowerBI.showReport", reportContainer, accessToken, embedUrl, embedReportId, reportType);
         }
     }
 }

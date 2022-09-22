@@ -31,9 +31,9 @@
 <MudAppBar Fixed="false" Color="Color.Warning" Dense="true">*@
 
 
-    <MudPaper Class="d-flex pa-2" Outlined="true">
-    <MudDatePicker Class="pa-1 mr-16"  DisableToolbar="true" Label="From" Editable="true" Mask="@(new DateMask("MM/dd/yyyy"))" DateFormat="MM/dd/yyyy" Placeholder="MM/dd/yyyy" />
-    <MudDatePicker Class="pa-1 mr-16"  DisableToolbar="true" Label="To" Editable="true" Mask="@(new DateMask("MM/dd/yyyy"))" DateFormat="MM/dd/yyyy" Placeholder="MM/dd/yyyy" />
+<MudPaper Class="d-flex pa-2" Outlined="true">
+    <MudDatePicker Class="pa-1 mr-16" DisableToolbar="true" Label="From" Editable="true" Mask="@(new DateMask("MM/dd/yyyy"))" DateFormat="MM/dd/yyyy" Placeholder="MM/dd/yyyy" />
+    <MudDatePicker Class="pa-1 mr-16" DisableToolbar="true" Label="To" Editable="true" Mask="@(new DateMask("MM/dd/yyyy"))" DateFormat="MM/dd/yyyy" Placeholder="MM/dd/yyyy" />
     <MudButton Class="pa-1 mr-16" Style="height:40px;margin-top:20px" Variant="Variant.Filled" Color="Color.Primary">Get Report</MudButton>
 
 </MudPaper>
@@ -53,7 +53,7 @@
     string workspaceId;
     string reportId;
     string ReportStatusHtml;
-
+    bool IsDashboard = false;
 
     [Parameter]
     public string reportid { get; set; }
@@ -74,16 +74,17 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
 
-        Roireport rd = await ROIReportSvc.GetROIReportdetails(reportid);
+        ROI_BI_Lib.Models.Report rd = await ROIReportSvc.GetROIReportdetails(reportid);
 
         if (rd is not null)
         {
             ReportStatusHtml = "Fetching Report...";
-            TenantID = rd.TenantId;
-            ClientID = rd.ClientId;
-            ClientSecret = rd.ClientSecret;
-            workspaceId = rd.WorkspaceId;
-            reportId = rd.ReportId;
+            TenantID = rd.Tenant.TenantGuid;
+            ClientID = rd.Tenant.ClientGuid;
+            ClientSecret = rd.Tenant.ClientSecret;
+            workspaceId = rd.Tenant.WorkspaceGuid;
+            reportId = rd.ReportGuid;
+            IsDashboard = rd.IsDashboard.Value;
 
             //if (firstRender)
             //{
@@ -99,14 +100,21 @@
 
                 using (var client = new PowerBIClient(new Uri("https://api.powerbi.com/"), tokenCredentials))
                 {
-                    var report = await client.Reports.GetReportInGroupAsync(new Guid(workspaceId), new Guid(reportId));
-                    var tokenResponse = await client.Reports.GenerateTokenAsync(new Guid(workspaceId), new Guid(reportId), generateTokenRequestParameters);
 
-                    //result.EmbedToken = tokenResponse;
-                    //result.EmbedUrl = report.EmbedUrl;
-                    //result.Id = report.Id.ToString();
+                    if (IsDashboard)
+                    {
+                        var dashboard = await client.Dashboards.GetDashboardAsync(new Guid(workspaceId), new Guid(reportId));
+                        var tokenResponse = await client.Dashboards.GenerateTokenAsync(new Guid(workspaceId), dashboard.Id, generateTokenRequestParameters);
+                        await BIReportinterop.CreateReport(JSRuntime, PowerBIElement, tokenResponse.Token, dashboard.EmbedUrl, dashboard.Id.ToString(),"dashboard");
+                    }
+                    else
 
-                    await BIReportinterop.CreateReport(JSRuntime, PowerBIElement, tokenResponse.Token, report.EmbedUrl, report.Id.ToString());
+                    {
+                        var report = await client.Reports.GetReportInGroupAsync(new Guid(workspaceId), new Guid(reportId));
+                        var tokenResponse = await client.Reports.GenerateTokenAsync(new Guid(workspaceId), new Guid(reportId), generateTokenRequestParameters);
+                        await BIReportinterop.CreateReport(JSRuntime, PowerBIElement, tokenResponse.Token, report.EmbedUrl, report.Id.ToString(),"report");
+                    }
+
                 }
             }
             catch (Exception ex)

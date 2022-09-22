@@ -17,6 +17,7 @@ namespace ROI_BI_Lib.Models
         public bool? IsGroup { get; set; }
         public bool? Status { get; set; }
         public string Icon { get; set; }
+        public short? Sortorder { get; set; }
 
         public virtual ICollection<MenuReport> MenuReports { get; set; }
     }

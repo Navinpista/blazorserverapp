@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using ROI_BI_Lib.Models;
-using ROI_BI_Lib.Models.Dto;
 
-namespace ROI_BI_Lib.Data
+namespace ROI_BI_Lib.Models
 {
     public partial class ROIBIContext : DbContext
     {
@@ -54,11 +52,6 @@ namespace ROI_BI_Lib.Data
                     .WithMany(p => p.LoginAudits)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK_LoginAudit_UserLogin");
-            });
-
-            modelBuilder.Entity<MenuDTO>(entity =>
-            {
-                entity.HasNoKey();
             });
 
             modelBuilder.Entity<Menu>(entity =>
