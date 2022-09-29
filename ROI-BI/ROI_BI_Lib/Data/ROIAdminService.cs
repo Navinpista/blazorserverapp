@@ -14,5 +14,10 @@ namespace ROI_BI_Lib.Data
         {
             return await DbContext.UserLogins.ToListAsync();
         }
+        public async Task<List<Menu>> GetAllMenu()
+        {
+            return await DbContext.Menus.ToListAsync();
+        }
+        
     }
 }
