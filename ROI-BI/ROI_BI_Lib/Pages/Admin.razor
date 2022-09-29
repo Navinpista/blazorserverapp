@@ -1,0 +1,273 @@
+﻿@page "/Admin"
+@using System.ComponentModel.DataAnnotations
+@*@using System.Net.Http.Json
+@inject HttpClient httpClient*@
+@using ROI_BI_Lib.Data
+@using ROI_BI_Lib.Models
+@inject ROIAdminService AdminSvc
+
+<MudTabs Elevation="2" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
+    <MudTabPanel Text="User">
+        <MudExpansionPanels>
+            <MudExpansionPanel Text="Add/Edit">
+                <EditForm Model="@userModel">
+                    <MudGrid>
+                        <MudItem Class="pa-2" xs="3">
+                            <MudTextField Label="First Name" @bind-Value="userModel.FirstName" For="@(() => userModel.FirstName)" />
+                        </MudItem>
+                        <MudItem Class="pa-2" xs="3">
+                            <MudTextField Label="Last Name" @bind-Value="userModel.LastName" For="@(() => userModel.LastName)" />
+                        </MudItem>
+                        <MudItem Class="pa-2" xs="3">
+                            <MudTextField Label="Username" @bind-Value="userModel.UserName" For="@(() => userModel.UserName)" />
+                        </MudItem>
+                        <MudItem Class="pa-2" xs="3">
+                            <MudTextField Label="Password" @bind-Value="userModel.Password" For="@(() => userModel.Password)" InputType="InputType.Password" />
+                        </MudItem>
+                        <MudItem Class="pa-2" xs="6">
+                            <MudCheckBox Label="IsActive" @bind-Value="userModel.IsActive" For="@(() => userModel.IsActive)" />
+                        </MudItem>
+
+                        <MudItem Class="pa-2" xs="6">
+                            <MudCardActions>
+                                <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Save</MudButton>
+                            </MudCardActions>
+                        </MudItem>
+
+                    </MudGrid>
+                </EditForm>
+            </MudExpansionPanel>
+            <MudExpansionPanel Text=@($"Users({lstUser.Count().ToString()})") IsInitiallyExpanded=true>
+
+
+
+@*                <MudDataGrid T="UserLogin" Items="@lstUser" EditMode="@(_isCellEditMode ? DataGridEditMode.Cell : DataGridEditMode.Form)"
+                             StartedEditingItem="@StartedEditingItem" CancelledEditingItem="@CancelledEditingItem" CommittedItemChanges="@CommittedItemChanges"
+                             Bordered="true" Dense="true" EditTrigger="@(_editTriggerRowClick ? DataGridEditTrigger.OnRowClick : DataGridEditTrigger.Manual)">
+                    <Columns>
+                        <Column T="UserLogin" Field="FirstName" Title="Nr" IsEditable="false" />
+                        <Column T="UserLogin" Field="LastName" />
+                        <Column T="UserLogin" Field="Username" />
+                        <Column T="UserLogin" Field="Password">
+                            @*<EditTemplate>
+                                <MudSelect @bind-Value="context.Item.Position" Required RequiredError="You must select a Position!!!" Margin="@Margin.Dense">
+                                    <MudSelectItem Value="0">zero</MudSelectItem>
+                                    <MudSelectItem Value="1">one</MudSelectItem>
+                                    <MudSelectItem Value="17">seventeen</MudSelectItem>
+                                </MudSelect>
+                            </EditTemplate>*@
+                        </Column>
+                      @*  <Column T="Element" Field="Molar" Title="Molar mass" />
+                        <Column T="Element" Hidden="@(_isCellEditMode || _readOnly || _editTriggerRowClick)" CellClass="d-flex justify-end">
+                            <CellTemplate>
+                                <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" OnClick="@context.Actions.StartEditingItem" />
+                            </CellTemplate>
+                        </Column>*@
+                    </Columns>
+                </MudDataGrid>
+*@
+
+
+                <MudTable Items="@lstUser" Dense="true" Hover="true" Bordered="true" Striped="true">
+                    @*          <ToolBarContent>
+                    <MudText Typo="Typo.h6">Users</MudText>
+                    <MudSpacer />
+                    <MudTextField Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+                    </ToolBarContent>*@
+                    <HeaderContent>
+                        <MudTh>Name</MudTh>
+                        <MudTh>User Name</MudTh>
+                        <MudTh>Password</MudTh>
+                        <MudTh>IsActive</MudTh>
+                        <MudTh>Action</MudTh>
+                    </HeaderContent>
+                    <RowTemplate>
+                        <MudTd DataLabel="Nr">@context.FirstName  @context.LastName</MudTd>
+                        <MudTd DataLabel="Name">@context.UserName</MudTd>
+                        <MudTd DataLabel="Position">@context.Password</MudTd>
+                        <MudTd DataLabel="Molar mass">@context.IsActive</MudTd>
+                        <MudTd DataLabel="Molar mass"></MudTd>
+                    </RowTemplate>
+                    <PagerContent>
+                        <MudTablePager />
+                    </PagerContent>
+                </MudTable>
+            </MudExpansionPanel>
+        </MudExpansionPanels>
+
+    </MudTabPanel>
+    @*    <MudTabPanel Text="Menu">
+    <MudExpansionPanels>
+    <MudExpansionPanel Text="Add/Edit">
+    <EditForm Model="@model" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+    <MudGrid>
+    <MudItem xs="12" sm="7">
+    <MudCard>
+    <MudCardContent>
+    <MudTextField Label="First name" HelperText="Max. 8 characters"
+    @bind-Value="model.Username" For="@(() => model.Username)" />
+    <MudTextField Label="Email" Class="mt-3"
+    @bind-Value="model.Email" For="@(() => model.Email)" />
+    <MudTextField Label="Password" HelperText="Choose a strong password" Class="mt-3"
+    @bind-Value="model.Password" For="@(() => model.Password)" InputType="InputType.Password" />
+    <MudTextField Label="Password" HelperText="Repeat the password" Class="mt-3"
+    @bind-Value="model.Password2" For="@(() => model.Password2)" InputType="InputType.Password" />
+    </MudCardContent>
+    <MudCardActions>
+    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Register</MudButton>
+    </MudCardActions>
+    </MudCard>
+    </MudItem>
+    </MudGrid>
+    </EditForm>
+    </MudExpansionPanel>
+    <MudExpansionPanel Text="View" IsInitiallyExpanded=true>
+    Panel Two Content
+    </MudExpansionPanel>
+    </MudExpansionPanels>
+    </MudTabPanel>
+    <MudTabPanel Text="Report">
+    <MudExpansionPanels>
+    <MudExpansionPanel Text="Add/Edit">
+    <EditForm Model="@model" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+    <MudGrid>
+    <MudItem xs="12" sm="7">
+    <MudCard>
+    <MudCardContent>
+    <MudTextField Label="First name" HelperText="Max. 8 characters"
+    @bind-Value="model.Username" For="@(() => model.Username)" />
+    <MudTextField Label="Email" Class="mt-3"
+    @bind-Value="model.Email" For="@(() => model.Email)" />
+    <MudTextField Label="Password" HelperText="Choose a strong password" Class="mt-3"
+    @bind-Value="model.Password" For="@(() => model.Password)" InputType="InputType.Password" />
+    <MudTextField Label="Password" HelperText="Repeat the password" Class="mt-3"
+    @bind-Value="model.Password2" For="@(() => model.Password2)" InputType="InputType.Password" />
+    </MudCardContent>
+    <MudCardActions>
+    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Register</MudButton>
+    </MudCardActions>
+    </MudCard>
+    </MudItem>
+    </MudGrid>
+    </EditForm>
+    </MudExpansionPanel>
+    <MudExpansionPanel Text="View" IsInitiallyExpanded=true>
+    Panel Two Content
+    </MudExpansionPanel>
+    </MudExpansionPanels>
+    </MudTabPanel>
+    <MudTabPanel Text="Access">
+    <MudExpansionPanels>
+    <MudExpansionPanel Text="Add/Edit">
+    <EditForm Model="@model" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+    <MudGrid>
+    <MudItem xs="12" sm="7">
+    <MudCard>
+    <MudCardContent>
+    <MudTextField Label="First name" HelperText="Max. 8 characters"
+    @bind-Value="model.Username" For="@(() => model.Username)" />
+    <MudTextField Label="Email" Class="mt-3"
+    @bind-Value="model.Email" For="@(() => model.Email)" />
+    <MudTextField Label="Password" HelperText="Choose a strong password" Class="mt-3"
+    @bind-Value="model.Password" For="@(() => model.Password)" InputType="InputType.Password" />
+    <MudTextField Label="Password" HelperText="Repeat the password" Class="mt-3"
+    @bind-Value="model.Password2" For="@(() => model.Password2)" InputType="InputType.Password" />
+    </MudCardContent>
+    <MudCardActions>
+    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Register</MudButton>
+    </MudCardActions>
+    </MudCard>
+    </MudItem>
+    </MudGrid>
+    </EditForm>
+    </MudExpansionPanel>
+    <MudExpansionPanel Text="View" IsInitiallyExpanded=true>
+    Panel Two Content
+    </MudExpansionPanel>
+    </MudExpansionPanels>
+    </MudTabPanel>*@
+</MudTabs>
+
+
+
+
+
+
+@code {
+    UserLogin userModel = new UserLogin();
+    bool success;
+    private string searchString1 = "";
+    private UserLogin selectedItem1 = null;
+    private HashSet<UserLogin> selectedItems = new HashSet<UserLogin>();
+    private IEnumerable<UserLogin> lstUser = new List<UserLogin>();
+
+    private bool _isCellEditMode = true;
+    private List<string> _events = new();
+    private bool _editTriggerRowClick;
+
+    void StartedEditingItem(UserLogin item)
+    {
+        _events.Insert(0, $"Event = StartedEditingItem, Data = {System.Text.Json.JsonSerializer.Serialize(item)}");
+    }
+
+    void CancelledEditingItem(UserLogin item)
+    {
+        _events.Insert(0, $"Event = CancelledEditingItem, Data = {System.Text.Json.JsonSerializer.Serialize(item)}");
+    }
+
+    void CommittedItemChanges(UserLogin item)
+    {
+        _events.Insert(0, $"Event = CommittedItemChanges, Data = {System.Text.Json.JsonSerializer.Serialize(item)}");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        lstUser = await AdminSvc.GetAllUser();
+    }
+
+
+    private bool FilterFunc1(UserLogin user) => FilterFunc(user, searchString1);
+
+    private bool FilterFunc(UserLogin user, string searchString)
+    {
+        //if (string.IsNullOrWhiteSpace(searchString))
+        //    return true;
+        //if (element.Sign.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+        //    return true;
+        //if (element.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+        //    return true;
+        //if ($"{element.Number} {element.Position} {element.Molar}".Contains(searchString))
+        //    return true;
+        return false;
+    }
+
+    public class RegisterAccountForm
+    {
+        [Required]
+        [StringLength(8, ErrorMessage = "Name length can't be more than 8.")]
+        public string Username { get; set; }
+
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [Required]
+        [StringLength(30, ErrorMessage = "Password must be at least 8 characters long.", MinimumLength = 8)]
+        public string Password { get; set; }
+
+        [Required]
+        [Compare(nameof(Password))]
+        public string Password2 { get; set; }
+
+    }
+
+    private void OnValidSubmit(EditContext context)
+    {
+        success = true;
+        StateHasChanged();
+    }
+
+}

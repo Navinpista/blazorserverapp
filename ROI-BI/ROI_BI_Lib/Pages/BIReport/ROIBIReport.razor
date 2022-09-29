@@ -14,23 +14,7 @@
 
 <h3>ROI Power BI Report</h3>
 
-
-@*<MudGrid>
-    <MudItem xs="3">
-        <MudPaper Class="d-flex align-center justify-center mud-width-full py-8"><MudDatePicker Label="Only Calendar"  DisableToolbar="true" /></MudPaper>
-    </MudItem>
-    <MudItem xs="3">
-        <MudPaper Class="d-flex align-center justify-center mud-width-full py-8"><MudDatePicker Label="Only Calendar"  DisableToolbar="true" /></MudPaper>
-    </MudItem>
-    <MudItem xs="6">
-    </MudItem>
-</MudGrid>
-*@
-
-@*
-<MudAppBar Fixed="false" Color="Color.Warning" Dense="true">*@
-
-
+<div  id="grbg">
 <MudPaper Class="d-flex pa-2" Outlined="true">
     <MudDatePicker Class="pa-1 mr-16" DisableToolbar="true" Label="From" Editable="true" Mask="@(new DateMask("MM/dd/yyyy"))" DateFormat="MM/dd/yyyy" Placeholder="MM/dd/yyyy" />
     <MudDatePicker Class="pa-1 mr-16" DisableToolbar="true" Label="To" Editable="true" Mask="@(new DateMask("MM/dd/yyyy"))" DateFormat="MM/dd/yyyy" Placeholder="MM/dd/yyyy" />
@@ -43,7 +27,7 @@
 <div style="width:100%;height:600px;max-width: 2000px" id="divReport" @ref="@PowerBIElement">
     <MudProgressCircular Color="Color.Default" Indeterminate="true" />
 </div>
-
+</div>
 
 @code {
     private ElementReference PowerBIElement;
@@ -152,19 +136,6 @@
         return authResult;
     }
 }
-
-
-@*<input type="text" value=@reportid>*@
-@*<input type="text" @bind=@TenantID>*@
-@*
-<div>@ClientID</div>
-<div>@ClientSecret</div>
-<div>@workspaceId</div>
-<div>@reportId</div>*@
-@*<div @ref="@PowerBIElement" style="width:100%;height:600px;max-width: 2000px" id="divReport">
-    <MudProgressCircular Color="Color.Default" Indeterminate="true" /> <div id="divReportContainer"> @((MarkupString)ReportStatusHtml)</div>
-</div>
-*@
 
 
 

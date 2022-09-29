@@ -43,6 +43,8 @@ namespace ROI_BI_Win
                 lstService.AddSingleton<ROIMenuService>();
                 lstService.AddSingleton<ROIBIReport>();
                 lstService.AddScoped<ROILoginService>();
+                lstService.AddScoped<ROIAdminService>();
+                lstService.AddScoped<HttpClient>();
                 lstService.AddSingleton<RoiDto>(_roiDto);
                 lstService.AddDataProtection();
                 lstService.AddMudServices();

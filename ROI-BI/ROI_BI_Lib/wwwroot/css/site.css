@@ -137,6 +137,17 @@ body {
     filter: blur(15px);
 }
 
+#grbg {
+    background-image: url('../img/graybg.jpg');
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    filter: blur(15px);
+}
+
 .login {
     color: #fff;
     background: #136a8a;
