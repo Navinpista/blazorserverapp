@@ -14,10 +14,25 @@ namespace ROI_BI_Lib.Data
         {
             return await DbContext.UserLogins.ToListAsync();
         }
+        public UserLogin GetUser(int id)
+        {
+            return DbContext.UserLogins.FirstOrDefault(x => x.UserId == id);
+        }
+        
+
         public async Task<List<Menu>> GetAllMenu()
         {
             return await DbContext.Menus.ToListAsync();
         }
+        public async Task<List<Report>> GetAllReport()
+        {
+            return await DbContext.Reports.ToListAsync();
+        }
+        public async Task<List<ReportAccess>> GetAllAccess()
+        {
+            return await DbContext.ReportAccesses.ToListAsync();
+        }
         
+
     }
 }

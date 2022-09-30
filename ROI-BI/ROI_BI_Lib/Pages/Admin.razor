@@ -7,29 +7,37 @@
 @code {
     private bool UserDialogVisible;
     private bool MenuDialogVisible;
-    private int rating;
-    private void OpenDialog() => UserDialogVisible = true;
-    void Submit() => UserDialogVisible = false;
+    private bool ReportDialogVisible;
+    private bool ReportAccessDialogVisible;
+
     private DialogOptions UserDialogOptions = new() { FullWidth = true };
     private DialogOptions MenuDialogOptions = new() { FullWidth = true };
+    private DialogOptions ReportDialogOptions = new() { FullWidth = true };
+    private DialogOptions ReportAccessDialogOptions = new() { FullWidth = true };
+
+
+    private void ManageFormDialog(string formtype, bool action, int id=0)
+    {
+        switch (formtype)
+        {
+            case "User":  if (id > 0) { GetUser(id); } UserDialogVisible = action; break;
+            case "Menu": MenuDialogVisible = action; break;
+            case "Report": ReportDialogVisible = action; break;
+            case "ReportAccess": ReportAccessDialogVisible = action; break;
+        }
+    }
+
+    private void GetUser(int id)
+    {
+        userModel= AdminSvc.GetUser(id);
+        //StateHasChanged();
+    }
 
     private void UserSave()
     {
 
     }
-    private void UserCancel()
-    {
-        UserDialogVisible = false;
-    }
 
-    private void OpenMenuForm()
-    {
-        MenuDialogVisible = true;
-    }
-    private void MenuCancel()
-    {
-        MenuDialogVisible = false;
-    }
 }
 
 
@@ -63,7 +71,7 @@
 
     </DialogContent>
     <DialogActions>
-        <MudButton OnClick="UserCancel">Cancel</MudButton>
+        <MudButton OnClick=@(()=> ManageFormDialog("User",false))>Cancel</MudButton>
         <MudButton Color="Color.Primary" OnClick="UserSave">Save</MudButton>
     </DialogActions>
 </MudDialog>
@@ -98,14 +106,84 @@
 
     </DialogContent>
     <DialogActions>
-        <MudButton OnClick="UserCancel">Cancel</MudButton>
+        <MudButton OnClick=@(()=> ManageFormDialog("Menu",false))>Cancel</MudButton>
         <MudButton Color="Color.Primary" OnClick="UserSave">Save</MudButton>
     </DialogActions>
 </MudDialog>
 
+<MudDialog @bind-IsVisible="ReportDialogVisible" Options="ReportDialogOptions">
+    <TitleContent>
+        <MudText Typo="Typo.h6">
+            <MudIcon Icon="@Icons.Material.Filled.Save" Class="mr-3 mb-n1" />
+            Add Menu
+        </MudText>
+    </TitleContent>
+    <DialogContent>
+        <EditForm Model="@menuModel">
+            <MudGrid>
+                <MudItem Class="pa-2" xs="12">
+                    <MudTextField Label="First Name" @bind-Value="menuModel.MenuName" For="@(() => menuModel.MenuName)" />
+                </MudItem>
+                <MudItem Class="pa-2" xs="12">
+                    <MudTextField Label="Last Name" @bind-Value="menuModel.Description" For="@(() => menuModel.Description)" />
+                </MudItem>
+                <MudItem Class="pa-2" xs="12">
+                    <MudTextField Label="Icon" @bind-Value="menuModel.Icon" For="@(() => menuModel.Icon)" />
+                </MudItem>
+                <MudItem Class="pa-2" xs="12">
+                    <MudCheckBox Label="Status" @bind-Value="menuModel.Status" For="@(() => menuModel.Status)" />
+                </MudItem>
+                <MudItem Class="pa-2" xs="12">
+                    <MudCheckBox Label="IsGroup" @bind-Value="menuModel.IsGroup" For="@(() => menuModel.IsGroup)" />
+                </MudItem>
+            </MudGrid>
+        </EditForm>
 
-<MudTabs Elevation="2" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
-    <MudTabPanel Text="User">
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick=@(()=> ManageFormDialog("Report",false))>Cancel</MudButton>
+        <MudButton Color="Color.Primary" OnClick="UserSave">Save</MudButton>
+    </DialogActions>
+</MudDialog>
+
+<MudDialog @bind-IsVisible="ReportAccessDialogVisible" Options="ReportAccessDialogOptions">
+    <TitleContent>
+        <MudText Typo="Typo.h6">
+            <MudIcon Icon="@Icons.Material.Filled.Save" Class="mr-3 mb-n1" />
+            Add Menu
+        </MudText>
+    </TitleContent>
+    <DialogContent>
+        <EditForm Model="@menuModel">
+            <MudGrid>
+                <MudItem Class="pa-2" xs="12">
+                    <MudTextField Label="First Name" @bind-Value="menuModel.MenuName" For="@(() => menuModel.MenuName)" />
+                </MudItem>
+                <MudItem Class="pa-2" xs="12">
+                    <MudTextField Label="Last Name" @bind-Value="menuModel.Description" For="@(() => menuModel.Description)" />
+                </MudItem>
+                <MudItem Class="pa-2" xs="12">
+                    <MudTextField Label="Icon" @bind-Value="menuModel.Icon" For="@(() => menuModel.Icon)" />
+                </MudItem>
+                <MudItem Class="pa-2" xs="12">
+                    <MudCheckBox Label="Status" @bind-Value="menuModel.Status" For="@(() => menuModel.Status)" />
+                </MudItem>
+                <MudItem Class="pa-2" xs="12">
+                    <MudCheckBox Label="IsGroup" @bind-Value="menuModel.IsGroup" For="@(() => menuModel.IsGroup)" />
+                </MudItem>
+            </MudGrid>
+        </EditForm>
+
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick=@(()=> ManageFormDialog("ReportAccess",false))>Cancel</MudButton>
+        <MudButton Color="Color.Primary" OnClick="UserSave">Save</MudButton>
+    </DialogActions>
+</MudDialog>
+
+<MudTabs Elevation="2" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-2" Style="height:100%">
+    <MudTabPanel Text="User" OnClick="@GetAllUser">
+        <MudButton Class="m-2" Style="float:right" OnClick="@(() => ManageFormDialog("User",true))" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Add" Color="Color.Info" Size="Size.Small">Add User</MudButton>
         <MudTable Items="@lstUser" Dense="true" Hover="true" Bordered="true" Striped="true">
             <HeaderContent>
                 <MudTh>Name</MudTh>
@@ -120,7 +198,7 @@
                 <MudTd>@context.Password</MudTd>
                 <MudTd>@context.IsActive</MudTd>
                 <MudTd>
-                    <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" OnClick="@OpenDialog" />
+                    <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" OnClick="@(() => ManageFormDialog("User",true,@context.UserId))" />
                 </MudTd>
             </RowTemplate>
             <PagerContent>
@@ -129,6 +207,8 @@
         </MudTable>
     </MudTabPanel>
     <MudTabPanel Text="Menu" OnClick="@GetAllMenu">
+        <MudButton Class="m-2" Style="float:right" OnClick="@(() => ManageFormDialog("Menu",true))" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Add" Color="Color.Info" Size="Size.Small">Add Menu</MudButton>
+
         <MudTable Items="@lstMenu" Dense="true" Hover="true" Bordered="true" Striped="true">
             <HeaderContent>
                 <MudTh>Menu Name</MudTh>
@@ -146,7 +226,33 @@
                 <MudTd>@context.Icon</MudTd>
                 <MudTd>@context.Sortorder</MudTd>
                 <MudTd>
-                    <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" OnClick="@OpenMenuForm" />
+                    <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" OnClick=@(()=> ManageFormDialog("Menu",true)) />
+                </MudTd>
+            </RowTemplate>
+            <PagerContent>
+                <MudTablePager />
+            </PagerContent>
+        </MudTable>
+    </MudTabPanel>
+    <MudTabPanel Text="Report" OnClick="@GetAllReport">
+        <MudButton Class="m-2" Style="float:right" OnClick="@(() => ManageFormDialog("Report",true))" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Add" Color="Color.Info" Size="Size.Small">Add Report</MudButton>
+
+        <MudTable Items="@lstReport" Dense="true" Hover="true" Bordered="true" Striped="true">
+            <HeaderContent>
+                <MudTh>Report Name</MudTh>
+                <MudTh>Report Id</MudTh>
+                <MudTh>Password</MudTh>
+                <MudTh>IsDashboard</MudTh>
+                <MudTh>TenantId</MudTh>
+                <MudTh>Action</MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd>@context.ReportName</MudTd>
+                <MudTd>@context.ReportGuid</MudTd>
+                <MudTd>@context.IsDashboard</MudTd>
+                <MudTd>@context.TenantId</MudTd>
+                <MudTd>
+                    <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" OnClick=@(()=> ManageFormDialog("Report",true)) />
                 </MudTd>
             </RowTemplate>
             <PagerContent>
@@ -154,9 +260,9 @@
             </PagerContent>
         </MudTable>
 
-
     </MudTabPanel>
-    <MudTabPanel Text="Report">
+    <MudTabPanel Text="Access" OnClick="@GetAllReportAccess">
+        <MudButton Class="m-2" Style="float:right" OnClick="@(() => ManageFormDialog("ReportAccess",true))" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Add" Color="Color.Info" Size="Size.Small">Add Access</MudButton>
 
         <MudTable Items="@lstUser" Dense="true" Hover="true" Bordered="true" Striped="true">
             <HeaderContent>
@@ -172,32 +278,7 @@
                 <MudTd>@context.Password</MudTd>
                 <MudTd>@context.IsActive</MudTd>
                 <MudTd>
-                    <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" OnClick="@OpenDialog" />
-                </MudTd>
-            </RowTemplate>
-            <PagerContent>
-                <MudTablePager />
-            </PagerContent>
-        </MudTable>
-
-    </MudTabPanel>
-    <MudTabPanel Text="Access">
-
-        <MudTable Items="@lstUser" Dense="true" Hover="true" Bordered="true" Striped="true">
-            <HeaderContent>
-                <MudTh>Name</MudTh>
-                <MudTh>User Name</MudTh>
-                <MudTh>Password</MudTh>
-                <MudTh>IsActive</MudTh>
-                <MudTh>Action</MudTh>
-            </HeaderContent>
-            <RowTemplate>
-                <MudTd>@context.FirstName  @context.LastName</MudTd>
-                <MudTd>@context.UserName</MudTd>
-                <MudTd>@context.Password</MudTd>
-                <MudTd>@context.IsActive</MudTd>
-                <MudTd>
-                    <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" OnClick="@OpenDialog" />
+                    <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" OnClick=@(()=> ManageFormDialog("ReportAccess",true)) />
                 </MudTd>
             </RowTemplate>
             <PagerContent>
@@ -222,6 +303,9 @@
     private HashSet<UserLogin> selectedItems = new HashSet<UserLogin>();
     private IEnumerable<UserLogin> lstUser = new List<UserLogin>();
     private IEnumerable<ROI_BI_Lib.Models.Menu> lstMenu = new List<ROI_BI_Lib.Models.Menu>();
+    private IEnumerable<Report> lstReport = new List<Report>();
+    private IEnumerable<ReportAccess> lstAccess = new List<ReportAccess>();
+
 
     private bool _isCellEditMode = true;
     private List<string> _events = new();
@@ -252,6 +336,19 @@
         lstMenu = await AdminSvc.GetAllMenu();
     }
 
+    private async Task GetAllReport()
+    {
+        lstReport = await AdminSvc.GetAllReport();
+    }
+
+    private async Task GetAllReportAccess()
+    {
+        lstAccess = await AdminSvc.GetAllAccess();
+    }
+    private async Task GetAllUser()
+    {
+        lstUser = await AdminSvc.GetAllUser();
+    }
 
     private bool FilterFunc1(UserLogin user) => FilterFunc(user, searchString1);
 
