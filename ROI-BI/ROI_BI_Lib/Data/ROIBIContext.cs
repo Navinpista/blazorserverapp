@@ -5,8 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using ROI_BI_Lib.Models;
 using ROI_BI_Lib.Models.Dto;
 
-namespace ROI_BI_Lib.Data
-{
+namespace ROI_BI_Lib.Data { 
     public partial class ROIBIContext : DbContext
     {
         public ROIBIContext()
@@ -29,11 +28,6 @@ namespace ROI_BI_Lib.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=CIT-LP116\\SQLEXPRESS;Initial Catalog=ROIBI;Integrated Security=True");
-            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -109,6 +103,8 @@ namespace ROI_BI_Lib.Data
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e => e.WorkspaceGuid).HasMaxLength(50);
+
                 entity.HasOne(d => d.Tenant)
                     .WithMany(p => p.Reports)
                     .HasForeignKey(d => d.TenantId)
@@ -122,6 +118,18 @@ namespace ROI_BI_Lib.Data
                 entity.Property(e => e.IsActive)
                     .IsRequired()
                     .HasDefaultValueSql("((1))");
+
+                entity.HasOne(d => d.Report)
+                    .WithMany(p => p.ReportAccesses)
+                    .HasForeignKey(d => d.ReportId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ReportAccess_Report");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.ReportAccesses)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ReportAccess_UserLogin");
             });
 
             modelBuilder.Entity<ReportAudit>(entity =>
@@ -159,7 +167,7 @@ namespace ROI_BI_Lib.Data
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.WorkspaceGuid)
+                entity.Property(e => e.TenantName)
                     .HasMaxLength(50)
                     .IsUnicode(false);
             });

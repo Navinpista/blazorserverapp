@@ -8,6 +8,7 @@ namespace ROI_BI_Lib.Models
         public UserLogin()
         {
             LoginAudits = new HashSet<LoginAudit>();
+            ReportAccesses = new HashSet<ReportAccess>();
         }
 
         public int UserId { get; set; }
@@ -18,5 +19,6 @@ namespace ROI_BI_Lib.Models
         public bool? IsActive { get; set; }
 
         public virtual ICollection<LoginAudit> LoginAudits { get; set; }
+        public virtual ICollection<ReportAccess> ReportAccesses { get; set; }
     }
 }

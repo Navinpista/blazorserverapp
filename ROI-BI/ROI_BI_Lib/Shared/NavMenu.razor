@@ -38,13 +38,13 @@
         return $"ROIBIReport/{reportid}";
     }
 
-    public void GetIsClicked(Roimenu menu)
+    public void GetIsClicked(Menu menu)
     {
         clickedMenu = menu.MenuId;
         if (prevClickMenu != clickedMenu)
         {
             expandSubNav = false;
-            if (menu.NavigateUrl != "" || menu.MenuName == "Home")
+            if (menu.MenuName == "Home")
             {
                 hasPageName = true;
             }

@@ -14,7 +14,7 @@ namespace ROI_BI_Lib.Models
         public string TenantGuid { get; set; }
         public string ClientGuid { get; set; }
         public string ClientSecret { get; set; }
-        public string WorkspaceGuid { get; set; }
+        public string TenantName { get; set; }
 
         public virtual ICollection<Report> Reports { get; set; }
     }

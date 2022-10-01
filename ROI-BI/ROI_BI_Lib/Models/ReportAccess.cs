@@ -9,5 +9,8 @@ namespace ROI_BI_Lib.Models
         public int ReportId { get; set; }
         public int UserId { get; set; }
         public bool? IsActive { get; set; }
+
+        public virtual Report Report { get; set; }
+        public virtual UserLogin User { get; set; }
     }
 }
