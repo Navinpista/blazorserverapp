@@ -151,6 +151,7 @@
             <MudGrid>
                 <MudItem Class="pa-2" xs="12">
                     <MudSelect @bind-Value="reportModel.TenantId" T="int" Label="Tenant" AnchorOrigin="Origin.BottomCenter">
+                        <MudSelectItem Value="0">--Select Tenant--</MudSelectItem>
                         @foreach (var selectItem in lstTenant)
                         {
                             <MudSelectItem Value="@selectItem.TenantId">@selectItem.TenantName</MudSelectItem>
@@ -175,7 +176,7 @@
     </DialogContent>
     <DialogActions>
         <MudButton OnClick=@(()=> ManageFormDialog("Report",false))>Cancel</MudButton>
-        <MudButton Color="Color.Primary" OnClick="UserSave">Save</MudButton>
+        <MudButton Color="Color.Primary" OnClick="ReportSave">Save</MudButton>
     </DialogActions>
 </MudDialog>
 
@@ -211,7 +212,7 @@
     </DialogContent>
     <DialogActions>
         <MudButton OnClick=@(()=> ManageFormDialog("ReportAccess",false))>Cancel</MudButton>
-        <MudButton Color="Color.Primary" OnClick="UserSave">Save</MudButton>
+        <MudButton Color="Color.Primary" OnClick="ReportAccessSave">Save</MudButton>
     </DialogActions>
 </MudDialog>
 
