@@ -4,7 +4,23 @@
 @using ROI_BI_Lib.Models
 @inject ROIAdminService AdminSvc
 
+
 @code {
+    bool success;
+    private string searchString1 = "";
+    private UserLogin selectedItem1 = null;
+    private HashSet<UserLogin> selectedItems = new HashSet<UserLogin>();
+    private IEnumerable<UserLogin> lstUser = new List<UserLogin>();
+    private IEnumerable<ROI_BI_Lib.Models.Menu> lstMenu = new List<ROI_BI_Lib.Models.Menu>();
+    private IEnumerable<Report> lstReport = new List<Report>();
+    private IEnumerable<ReportAccess> lstAccess = new List<ReportAccess>();
+    private IEnumerable<Tenant> lstTenant = new List<Tenant>();
+
+    UserLogin userModel = new UserLogin();
+    ROI_BI_Lib.Models.Menu menuModel = new ROI_BI_Lib.Models.Menu();
+    Report reportModel = new Report();
+    ReportAccess reportAccessModel = new ReportAccess();
+
     private bool UserDialogVisible;
     private bool MenuDialogVisible;
     private bool ReportDialogVisible;
@@ -15,29 +31,32 @@
     private DialogOptions ReportDialogOptions = new() { FullWidth = true };
     private DialogOptions ReportAccessDialogOptions = new() { FullWidth = true };
 
+    protected override async Task OnInitializedAsync() { lstUser = await AdminSvc.GetAllUser(); lstTenant = await AdminSvc.GetAllTenant(); }
+    private async Task GetAllMenu() { lstMenu = await AdminSvc.GetAllMenu(); }
+    private async Task GetAllReport() { lstReport = await AdminSvc.GetAllReport(); }
+    private async Task GetAllReportAccess() { lstAccess = await AdminSvc.GetAllAccess(); }
+    private async Task GetAllUser() { lstUser = await AdminSvc.GetAllUser(); }
 
-    private void ManageFormDialog(string formtype, bool action, int id=0)
+    private UserLogin GetUser(int id) => AdminSvc.GetUser(id);
+    private ROI_BI_Lib.Models.Menu GetMenu(int id) => AdminSvc.GetMenu(id);
+    private Report GetReport(int id) => AdminSvc.GetReport(id);
+    private ReportAccess GetReportAccess(int id) => AdminSvc.GetReportAccess(id);
+
+    private void ManageFormDialog(string formtype, bool action, int id = 0)
     {
         switch (formtype)
         {
-            case "User":  if (id > 0) { GetUser(id); } UserDialogVisible = action; break;
-            case "Menu": MenuDialogVisible = action; break;
-            case "Report": ReportDialogVisible = action; break;
-            case "ReportAccess": ReportAccessDialogVisible = action; break;
+            case "User": userModel = id > 0 ? GetUser(id) : new UserLogin(); UserDialogVisible = action; break;
+            case "Menu": menuModel = id > 0 ? GetMenu(id) : new Models.Menu(); MenuDialogVisible = action; break;
+            case "Report": reportModel = id > 0 ? GetReport(id) : new Report(); ReportDialogVisible = action; break;
+            case "ReportAccess": reportAccessModel = id > 0 ? GetReportAccess(id) : new ReportAccess(); ReportAccessDialogVisible = action; break;
         }
     }
 
-    private void GetUser(int id)
-    {
-        userModel= AdminSvc.GetUser(id);
-        //StateHasChanged();
-    }
-
-    private void UserSave()
-    {
-
-    }
-
+    private async void UserSave() { AdminSvc.SaveUser(userModel); UserDialogVisible = false; await GetAllUser(); }
+    private async void MenuSave() { AdminSvc.SaveMenu(menuModel); MenuDialogVisible = false; await GetAllMenu(); }
+    private async void ReportSave() { AdminSvc.SaveReport(reportModel); ReportDialogVisible = false; await GetAllReport(); }
+    private async void ReportAccessSave() { AdminSvc.SaveReportAccess(reportAccessModel); ReportAccessDialogVisible = false; await GetAllReportAccess(); }
 }
 
 
@@ -100,6 +119,13 @@
                 </MudItem>
                 <MudItem Class="pa-2" xs="12">
                     <MudCheckBox Label="IsGroup" @bind-Value="menuModel.IsGroup" For="@(() => menuModel.IsGroup)" />
+
+                        <MudSelect T="int" Label="Parent Menu" AnchorOrigin="Origin.BottomCenter">
+                        @foreach (var selectItem in lstMenu.Where(x=>x.IsGroup == true))
+                        {
+                            <MudSelectItem Value="@selectItem.MenuId">@selectItem.MenuName</MudSelectItem>
+                        }
+                    </MudSelect>
                 </MudItem>
             </MudGrid>
         </EditForm>
@@ -107,7 +133,7 @@
     </DialogContent>
     <DialogActions>
         <MudButton OnClick=@(()=> ManageFormDialog("Menu",false))>Cancel</MudButton>
-        <MudButton Color="Color.Primary" OnClick="UserSave">Save</MudButton>
+        <MudButton Color="Color.Primary" OnClick="MenuSave">Save</MudButton>
     </DialogActions>
 </MudDialog>
 
@@ -119,22 +145,27 @@
         </MudText>
     </TitleContent>
     <DialogContent>
-        <EditForm Model="@menuModel">
+        <EditForm Model="@reportModel">
             <MudGrid>
                 <MudItem Class="pa-2" xs="12">
-                    <MudTextField Label="First Name" @bind-Value="menuModel.MenuName" For="@(() => menuModel.MenuName)" />
+                    <MudSelect @bind-Value="reportModel.Tenant" T="Tenant" Label="Tenant" AnchorOrigin="Origin.BottomCenter">
+                        @foreach (var selectItem in lstTenant)
+                        {
+                            <MudSelectItem Value="@selectItem">@selectItem.TenantName</MudSelectItem>
+                        }
+                    </MudSelect>
                 </MudItem>
                 <MudItem Class="pa-2" xs="12">
-                    <MudTextField Label="Last Name" @bind-Value="menuModel.Description" For="@(() => menuModel.Description)" />
+                    <MudTextField Label="Report Name" @bind-Value="reportModel.ReportName" For="@(() => menuModel.MenuName)" />
                 </MudItem>
                 <MudItem Class="pa-2" xs="12">
-                    <MudTextField Label="Icon" @bind-Value="menuModel.Icon" For="@(() => menuModel.Icon)" />
+                    <MudTextField Label="Workspace Id" @bind-Value="reportModel.WorkspaceGuid" For="@(() => menuModel.Description)" />
                 </MudItem>
                 <MudItem Class="pa-2" xs="12">
-                    <MudCheckBox Label="Status" @bind-Value="menuModel.Status" For="@(() => menuModel.Status)" />
+                    <MudTextField Label="Report Id" @bind-Value="reportModel.ReportGuid" For="@(() => menuModel.Icon)" />
                 </MudItem>
                 <MudItem Class="pa-2" xs="12">
-                    <MudCheckBox Label="IsGroup" @bind-Value="menuModel.IsGroup" For="@(() => menuModel.IsGroup)" />
+                    <MudCheckBox Label="IsDashboard" @bind-Value="menuModel.IsGroup" For="@(() => reportModel.IsDashboard)" />
                 </MudItem>
             </MudGrid>
         </EditForm>
@@ -156,6 +187,7 @@
     <DialogContent>
         <EditForm Model="@menuModel">
             <MudGrid>
+
                 <MudItem Class="pa-2" xs="12">
                     <MudTextField Label="First Name" @bind-Value="menuModel.MenuName" For="@(() => menuModel.MenuName)" />
                 </MudItem>
@@ -294,101 +326,3 @@
 
 
 
-@code {
-    UserLogin userModel = new UserLogin();
-    ROI_BI_Lib.Models.Menu menuModel = new ROI_BI_Lib.Models.Menu();
-    bool success;
-    private string searchString1 = "";
-    private UserLogin selectedItem1 = null;
-    private HashSet<UserLogin> selectedItems = new HashSet<UserLogin>();
-    private IEnumerable<UserLogin> lstUser = new List<UserLogin>();
-    private IEnumerable<ROI_BI_Lib.Models.Menu> lstMenu = new List<ROI_BI_Lib.Models.Menu>();
-    private IEnumerable<Report> lstReport = new List<Report>();
-    private IEnumerable<ReportAccess> lstAccess = new List<ReportAccess>();
-
-
-    private bool _isCellEditMode = true;
-    private List<string> _events = new();
-    private bool _editTriggerRowClick;
-
-    void StartedEditingItem(UserLogin item)
-    {
-        _events.Insert(0, $"Event = StartedEditingItem, Data = {System.Text.Json.JsonSerializer.Serialize(item)}");
-    }
-
-    void CancelledEditingItem(UserLogin item)
-    {
-        _events.Insert(0, $"Event = CancelledEditingItem, Data = {System.Text.Json.JsonSerializer.Serialize(item)}");
-    }
-
-    void CommittedItemChanges(UserLogin item)
-    {
-        _events.Insert(0, $"Event = CommittedItemChanges, Data = {System.Text.Json.JsonSerializer.Serialize(item)}");
-    }
-
-    protected override async Task OnInitializedAsync()
-    {
-        lstUser = await AdminSvc.GetAllUser();
-    }
-
-    private async Task GetAllMenu()
-    {
-        lstMenu = await AdminSvc.GetAllMenu();
-    }
-
-    private async Task GetAllReport()
-    {
-        lstReport = await AdminSvc.GetAllReport();
-    }
-
-    private async Task GetAllReportAccess()
-    {
-        lstAccess = await AdminSvc.GetAllAccess();
-    }
-    private async Task GetAllUser()
-    {
-        lstUser = await AdminSvc.GetAllUser();
-    }
-
-    private bool FilterFunc1(UserLogin user) => FilterFunc(user, searchString1);
-
-    private bool FilterFunc(UserLogin user, string searchString)
-    {
-        //if (string.IsNullOrWhiteSpace(searchString))
-        //    return true;
-        //if (element.Sign.Contains(searchString, StringComparison.OrdinalIgnoreCase))
-        //    return true;
-        //if (element.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
-        //    return true;
-        //if ($"{element.Number} {element.Position} {element.Molar}".Contains(searchString))
-        //    return true;
-        return false;
-    }
-
-    public class RegisterAccountForm
-    {
-        [Required]
-        [StringLength(8, ErrorMessage = "Name length can't be more than 8.")]
-        public string Username { get; set; }
-
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; }
-
-        [Required]
-        [StringLength(30, ErrorMessage = "Password must be at least 8 characters long.", MinimumLength = 8)]
-        public string Password { get; set; }
-
-        [Required]
-        [Compare(nameof(Password))]
-        public string Password2 { get; set; }
-
-    }
-
-    private void OnValidSubmit(EditContext context)
-    {
-        success = true;
-        StateHasChanged();
-    }
-
-}
