@@ -106,6 +106,17 @@
         <EditForm Model="@menuModel">
             <MudGrid>
                 <MudItem Class="pa-2" xs="12">
+                    <MudCheckBox Label="IsGroup" @bind-Value="menuModel.IsGroup" For="@(() => menuModel.IsGroup)" />
+
+                    <MudSelect T="int" @bind-Value="menuModel.ParentMenuId" Label="Parent Menu" AnchorOrigin="Origin.BottomCenter">
+                        <MudSelectItem Value="0">--Select Group--</MudSelectItem>
+                        @foreach (var selectItem in lstMenu.Where(x => x.IsGroup == true))
+                        {
+                            <MudSelectItem Value="@selectItem.MenuId">@selectItem.MenuName</MudSelectItem>
+                        }
+                    </MudSelect>
+                </MudItem>
+                <MudItem Class="pa-2" xs="12">
                     <MudTextField Label="First Name" @bind-Value="menuModel.MenuName" For="@(() => menuModel.MenuName)" />
                 </MudItem>
                 <MudItem Class="pa-2" xs="12">
@@ -117,17 +128,7 @@
                 <MudItem Class="pa-2" xs="12">
                     <MudCheckBox Label="Status" @bind-Value="menuModel.Status" For="@(() => menuModel.Status)" />
                 </MudItem>
-                <MudItem Class="pa-2" xs="12">
-                    <MudCheckBox Label="IsGroup" @bind-Value="menuModel.IsGroup" For="@(() => menuModel.IsGroup)" />
-
-                        <MudSelect T="int" @bind-Value="menuModel.ParentMenuId" Label="Parent Menu" AnchorOrigin="Origin.BottomCenter">
-                        <MudSelectItem Value="0">--Select Group--</MudSelectItem>
-                            @foreach (var selectItem in lstMenu.Where(x=>x.IsGroup == true))
-                        {
-                            <MudSelectItem Value="@selectItem.MenuId">@selectItem.MenuName</MudSelectItem>
-                        }
-                    </MudSelect>
-                </MudItem>
+               
             </MudGrid>
         </EditForm>
 
@@ -149,10 +150,10 @@
         <EditForm Model="@reportModel">
             <MudGrid>
                 <MudItem Class="pa-2" xs="12">
-                    <MudSelect @bind-Value="reportModel.Tenant" T="Tenant" Label="Tenant" AnchorOrigin="Origin.BottomCenter">
+                    <MudSelect @bind-Value="reportModel.TenantId" T="int" Label="Tenant" AnchorOrigin="Origin.BottomCenter">
                         @foreach (var selectItem in lstTenant)
                         {
-                            <MudSelectItem Value="@selectItem">@selectItem.TenantName</MudSelectItem>
+                            <MudSelectItem Value="@selectItem.TenantId">@selectItem.TenantName</MudSelectItem>
                         }
                     </MudSelect>
                 </MudItem>
@@ -259,7 +260,7 @@
                 <MudTd>@context.Icon</MudTd>
                 <MudTd>@context.Sortorder</MudTd>
                 <MudTd>
-                    <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" OnClick=@(()=> ManageFormDialog("Menu",true)) />
+                    <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" OnClick="@(() => ManageFormDialog("Menu",true,@context.MenuId))" />
                 </MudTd>
             </RowTemplate>
             <PagerContent>
@@ -285,7 +286,7 @@
                 <MudTd>@context.IsDashboard</MudTd>
                 <MudTd>@context.TenantId</MudTd>
                 <MudTd>
-                    <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" OnClick=@(()=> ManageFormDialog("Report",true)) />
+                    <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" OnClick="@(() => ManageFormDialog("Report",true,@context.ReportId))" />
                 </MudTd>
             </RowTemplate>
             <PagerContent>
@@ -297,7 +298,7 @@
     <MudTabPanel Text="Access" OnClick="@GetAllReportAccess">
         <MudButton Class="m-2" Style="float:right" OnClick="@(() => ManageFormDialog("ReportAccess",true))" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Add" Color="Color.Info" Size="Size.Small">Add Access</MudButton>
 
-        <MudTable Items="@lstUser" Dense="true" Hover="true" Bordered="true" Striped="true">
+       @* <MudTable Items="@lstAccess" Dense="true" Hover="true" Bordered="true" Striped="true">
             <HeaderContent>
                 <MudTh>Name</MudTh>
                 <MudTh>User Name</MudTh>
@@ -311,13 +312,13 @@
                 <MudTd>@context.Password</MudTd>
                 <MudTd>@context.IsActive</MudTd>
                 <MudTd>
-                    <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" OnClick=@(()=> ManageFormDialog("ReportAccess",true)) />
+                    <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" OnClick="@(() => ManageFormDialog("ReportAccess",true,@context.ReportAccessId))" />
                 </MudTd>
             </RowTemplate>
             <PagerContent>
                 <MudTablePager />
             </PagerContent>
-        </MudTable>
+        </MudTable>*@
 
     </MudTabPanel>
 </MudTabs>

@@ -12,11 +12,11 @@ namespace ROI_BI_Lib.Models
         }
 
         public int ReportId { get; set; }
-        public int? TenantId { get; set; }
         public string ReportName { get; set; }
         public string ReportGuid { get; set; }
         public bool? IsDashboard { get; set; }
         public string WorkspaceGuid { get; set; }
+        public int TenantId { get; set; }
 
         public virtual Tenant Tenant { get; set; }
         public virtual ICollection<MenuReport> MenuReports { get; set; }
