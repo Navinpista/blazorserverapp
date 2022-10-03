@@ -120,8 +120,9 @@
                 <MudItem Class="pa-2" xs="12">
                     <MudCheckBox Label="IsGroup" @bind-Value="menuModel.IsGroup" For="@(() => menuModel.IsGroup)" />
 
-                        <MudSelect T="int" Label="Parent Menu" AnchorOrigin="Origin.BottomCenter">
-                        @foreach (var selectItem in lstMenu.Where(x=>x.IsGroup == true))
+                        <MudSelect T="int" @bind-Value="menuModel.ParentMenuId" Label="Parent Menu" AnchorOrigin="Origin.BottomCenter">
+                        <MudSelectItem Value="0">--Select Group--</MudSelectItem>
+                            @foreach (var selectItem in lstMenu.Where(x=>x.IsGroup == true))
                         {
                             <MudSelectItem Value="@selectItem.MenuId">@selectItem.MenuName</MudSelectItem>
                         }

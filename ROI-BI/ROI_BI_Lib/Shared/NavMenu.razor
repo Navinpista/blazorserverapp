@@ -81,7 +81,7 @@
         {
             @foreach (var menu in lstMenu)
             {
-                @if (menu.ParentMenuId is null)
+                @if (menu.ParentMenuId == 0)
                 {
                     if (menu.IsGroup.Value)
                     {

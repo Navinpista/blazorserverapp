@@ -11,13 +11,13 @@ namespace ROI_BI_Lib.Models
         }
 
         public int MenuId { get; set; }
-        public int? ParentMenuId { get; set; }
         public string MenuName { get; set; }
         public string Description { get; set; }
         public bool? IsGroup { get; set; }
         public bool? Status { get; set; }
         public string Icon { get; set; }
         public short? Sortorder { get; set; }
+        public int ParentMenuId { get; set; }
 
         public virtual ICollection<MenuReport> MenuReports { get; set; }
     }

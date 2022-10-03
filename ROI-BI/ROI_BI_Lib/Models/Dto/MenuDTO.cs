@@ -9,7 +9,7 @@ namespace ROI_BI_Lib.Models.Dto
     public class MenuDTO
     {
         public int MenuId { get; set; }
-        public int? ParentMenuId { get; set; }
+        public int ParentMenuId { get; set; }
         public string MenuName { get; set; }
         public string Description { get; set; }
         public bool? IsGroup { get; set; }
