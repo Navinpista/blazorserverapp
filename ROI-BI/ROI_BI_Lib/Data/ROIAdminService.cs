@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ROI_BI_Lib.Models;
+using ROI_BI_Lib.Models.Dto;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ROI_BI_Lib.Data
 {
@@ -34,7 +36,7 @@ namespace ROI_BI_Lib.Data
         }
         public ReportAccess GetReportAccess(int id)
         {
-            return DbContext.ReportAccesses.FirstOrDefault(x => x.ReportAccessId == id);
+            return DbContext.ReportAccesses.Include(x => x.User).FirstOrDefault(x => x.ReportAccessId == id);
         }
 
 
@@ -90,6 +92,27 @@ namespace ROI_BI_Lib.Data
             DbContext.SaveChanges();
         }
 
+        public void SaveUserReportAccess(List<UserAccessDTO> userreportAccess)
+        {
+
+            var accessUser = userreportAccess.Where(x => x.HasAccess == "TRUE").Select(x => new ReportAccess()
+            {
+                //ReportAccessId = x.ReportAccessId,
+                ReportId = x.ReportId,
+                UserId = x.UserId,
+                IsActive = true
+            });
+
+            DbContext.ReportAccesses.RemoveRange
+                (DbContext.ReportAccesses.Where
+                (x => userreportAccess.Select(y => y.ReportAccessId).Contains(x.ReportAccessId)));
+
+            //DbContext.Database.ExecuteSqlRaw("TRUNCATE TABLE [ReportAccess]");
+            DbContext.ReportAccesses.AddRange(accessUser);
+            DbContext.SaveChanges();
+        }
+
+
 
 
 
@@ -101,9 +124,40 @@ namespace ROI_BI_Lib.Data
         {
             return await DbContext.Reports.ToListAsync();
         }
+
         public async Task<List<ReportAccess>> GetAllAccess()
         {
-            return await DbContext.ReportAccesses.ToListAsync();
+            return await DbContext.ReportAccesses.Include(x => x.User).Include(x => x.Report).ToListAsync();
+        }
+        public List<UserAccessDTO> GetAccessByReport(int reportId)
+        {
+            var access = DbContext.ReportAccesses.Include(x => x.Report).Include(x => x.User).Where(x => x.ReportId == reportId)
+                .Select(x => new UserAccessDTO()
+                {
+                    ReportAccessId = x.ReportAccessId,
+                    FirstName = x.User.FirstName,
+                    LastName = x.User.LastName,
+                    ReportId = x.Report.ReportId,
+                    UserId = x.UserId,
+                    UserName = x.User.UserName,
+                    HasAccess = "TRUE"
+                }).ToList();
+
+
+            var inaccess = DbContext.UserLogins.Where(x => !access.Select(y => y.UserId).ToList().Contains(x.UserId))
+            .Select(x => new UserAccessDTO()
+            {
+                FirstName = x.FirstName,
+                LastName = x.LastName,
+                ReportId = 0,
+                UserId = x.UserId,
+                UserName = x.UserName,
+                HasAccess = "FALSE"
+            }).ToList();
+
+            access.AddRange(inaccess);
+            return access;
+
         }
 
 

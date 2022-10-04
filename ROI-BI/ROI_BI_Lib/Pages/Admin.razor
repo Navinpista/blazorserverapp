@@ -2,6 +2,7 @@
 @using System.ComponentModel.DataAnnotations
 @using ROI_BI_Lib.Data
 @using ROI_BI_Lib.Models
+@using ROI_BI_Lib.Models.Dto
 @inject ROIAdminService AdminSvc
 
 
@@ -15,6 +16,7 @@
     private IEnumerable<Report> lstReport = new List<Report>();
     private IEnumerable<ReportAccess> lstAccess = new List<ReportAccess>();
     private IEnumerable<Tenant> lstTenant = new List<Tenant>();
+    private IEnumerable<UserAccessDTO> lstUserAccess = new List<UserAccessDTO>();
 
     UserLogin userModel = new UserLogin();
     ROI_BI_Lib.Models.Menu menuModel = new ROI_BI_Lib.Models.Menu();
@@ -25,6 +27,9 @@
     private bool MenuDialogVisible;
     private bool ReportDialogVisible;
     private bool ReportAccessDialogVisible;
+    private string reportId;
+    private string reportGuid;
+    private string reportName;
 
     private DialogOptions UserDialogOptions = new() { FullWidth = true };
     private DialogOptions MenuDialogOptions = new() { FullWidth = true };
@@ -37,26 +42,43 @@
     private async Task GetAllReportAccess() { lstAccess = await AdminSvc.GetAllAccess(); }
     private async Task GetAllUser() { lstUser = await AdminSvc.GetAllUser(); }
 
+
+    private List<UserAccessDTO> GetAccessByReport(int id, string repGuid, string repName) { reportId = id.ToString(); reportGuid = repGuid; reportName = repName; return AdminSvc.GetAccessByReport(id); }
     private UserLogin GetUser(int id) => AdminSvc.GetUser(id);
     private ROI_BI_Lib.Models.Menu GetMenu(int id) => AdminSvc.GetMenu(id);
     private Report GetReport(int id) => AdminSvc.GetReport(id);
-    private ReportAccess GetReportAccess(int id) => AdminSvc.GetReportAccess(id);
+    private ReportAccess GetReportAccess(int id) { return AdminSvc.GetReportAccess(id); }
 
-    private void ManageFormDialog(string formtype, bool action, int id = 0)
+    private void ManageFormDialog(string formtype, bool action, int id = 0, string guid = null, string name = null)
     {
         switch (formtype)
         {
             case "User": userModel = id > 0 ? GetUser(id) : new UserLogin(); UserDialogVisible = action; break;
             case "Menu": menuModel = id > 0 ? GetMenu(id) : new Models.Menu(); MenuDialogVisible = action; break;
             case "Report": reportModel = id > 0 ? GetReport(id) : new Report(); ReportDialogVisible = action; break;
-            case "ReportAccess": reportAccessModel = id > 0 ? GetReportAccess(id) : new ReportAccess(); ReportAccessDialogVisible = action; break;
+            case "ReportAccess": lstUserAccess = id > 0 ? GetAccessByReport(id, guid, name) : new List<UserAccessDTO>(); ReportAccessDialogVisible = action; break;
         }
     }
 
     private async void UserSave() { AdminSvc.SaveUser(userModel); UserDialogVisible = false; await GetAllUser(); }
     private async void MenuSave() { AdminSvc.SaveMenu(menuModel); MenuDialogVisible = false; await GetAllMenu(); }
     private async void ReportSave() { AdminSvc.SaveReport(reportModel); ReportDialogVisible = false; await GetAllReport(); }
-    private async void ReportAccessSave() { AdminSvc.SaveReportAccess(reportAccessModel); ReportAccessDialogVisible = false; await GetAllReportAccess(); }
+    private async void ReportAccessSave() 
+    {
+        AdminSvc.SaveUserReportAccess(lstUserAccess.ToList());
+        //AdminSvc.SaveReportAccess(reportAccessModel); 
+        ReportAccessDialogVisible = false; 
+        await GetAllReportAccess(); 
+    }
+
+
+    private void ItemUpdated(MudItemDropInfo<UserAccessDTO> dropItem)
+    {
+        dropItem.Item.HasAccess = dropItem.DropzoneIdentifier;
+        var usraccess = lstUserAccess.Where(x=> x.ReportId == dropItem.Item.ReportId && x.UserId == dropItem.Item.UserId).FirstOrDefault();
+        usraccess.HasAccess = dropItem.DropzoneIdentifier;
+        usraccess.ReportId = Convert.ToInt32(reportId);
+    }
 }
 
 
@@ -128,7 +150,7 @@
                 <MudItem Class="pa-2" xs="12">
                     <MudCheckBox Label="Status" @bind-Value="menuModel.Status" For="@(() => menuModel.Status)" />
                 </MudItem>
-               
+
             </MudGrid>
         </EditForm>
 
@@ -184,31 +206,46 @@
     <TitleContent>
         <MudText Typo="Typo.h6">
             <MudIcon Icon="@Icons.Material.Filled.Save" Class="mr-3 mb-n1" />
-            Add Menu
+            User Report - Access
         </MudText>
     </TitleContent>
     <DialogContent>
-        <EditForm Model="@menuModel">
-            <MudGrid>
+        <MudGrid>
+            <MudItem Class="pa-2" xs="12">
+                <MudText>Report Name: @reportName</MudText>
+                <MudText>Report Id:  @reportGuid</MudText>
+            </MudItem>
+            <MudItem Class="pa-2" xs="12">
+                <MudDropContainer T="UserAccessDTO"
+                                  ItemDropped="ItemUpdated"
+                                  ItemsSelector="@((item,dropzone) =>  item.HasAccess == dropzone)"
+                                  Items="lstUserAccess"
+                                  Class="d-flex flex-wrap flex-grow-1">
+                    <ChildContent>
+                        <MudDropZone T="UserAccessDTO"
+                                     Identifier="TRUE"
+                                     DraggingClass="mud-alert-text-info"
+                                     ItemDraggingClass="mud-alert-text-info"
+                                     Style="overflow:scroll; height:400px"
+                                     Class="rounded mud-background-gray pa-6 ma-8 flex-grow-1">
+                            <MudText Class="mb-2">Accessible</MudText>
+                        </MudDropZone>
 
-                <MudItem Class="pa-2" xs="12">
-                    <MudTextField Label="First Name" @bind-Value="menuModel.MenuName" For="@(() => menuModel.MenuName)" />
-                </MudItem>
-                <MudItem Class="pa-2" xs="12">
-                    <MudTextField Label="Last Name" @bind-Value="menuModel.Description" For="@(() => menuModel.Description)" />
-                </MudItem>
-                <MudItem Class="pa-2" xs="12">
-                    <MudTextField Label="Icon" @bind-Value="menuModel.Icon" For="@(() => menuModel.Icon)" />
-                </MudItem>
-                <MudItem Class="pa-2" xs="12">
-                    <MudCheckBox Label="Status" @bind-Value="menuModel.Status" For="@(() => menuModel.Status)" />
-                </MudItem>
-                <MudItem Class="pa-2" xs="12">
-                    <MudCheckBox Label="IsGroup" @bind-Value="menuModel.IsGroup" For="@(() => menuModel.IsGroup)" />
-                </MudItem>
-            </MudGrid>
-        </EditForm>
-
+                        <MudDropZone T="UserAccessDTO"
+                                     Identifier="FALSE"
+                                     DraggingClass="mud-alert-text-info"
+                                     ItemDraggingClass="mud-alert-text-info"
+                                     Style="overflow:scroll; height:400px"
+                                     Class="rounded mud-background-gray pa-6 ma-8 flex-grow-1">
+                            <MudText Class="mb-2">Not Accessible</MudText>
+                        </MudDropZone>
+                    </ChildContent>
+                    <ItemRenderer>
+                        <div class="mud-elevation-25 pa-1 my-1">@context.UserName</div>
+                    </ItemRenderer>
+                </MudDropContainer>
+            </MudItem>
+        </MudGrid>
     </DialogContent>
     <DialogActions>
         <MudButton OnClick=@(()=> ManageFormDialog("ReportAccess",false))>Cancel</MudButton>
@@ -299,27 +336,21 @@
     <MudTabPanel Text="Access" OnClick="@GetAllReportAccess">
         <MudButton Class="m-2" Style="float:right" OnClick="@(() => ManageFormDialog("ReportAccess",true))" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Add" Color="Color.Info" Size="Size.Small">Add Access</MudButton>
 
-       @* <MudTable Items="@lstAccess" Dense="true" Hover="true" Bordered="true" Striped="true">
+        <MudTable Items="@lstAccess" Dense="true" Hover="true" Bordered="true" Striped="true">
             <HeaderContent>
-                <MudTh>Name</MudTh>
-                <MudTh>User Name</MudTh>
-                <MudTh>Password</MudTh>
-                <MudTh>IsActive</MudTh>
+                <MudTh>Report Name</MudTh>
                 <MudTh>Action</MudTh>
             </HeaderContent>
             <RowTemplate>
-                <MudTd>@context.FirstName  @context.LastName</MudTd>
-                <MudTd>@context.UserName</MudTd>
-                <MudTd>@context.Password</MudTd>
-                <MudTd>@context.IsActive</MudTd>
+                <MudTd>@context.Report.ReportName</MudTd>
                 <MudTd>
-                    <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" OnClick="@(() => ManageFormDialog("ReportAccess",true,@context.ReportAccessId))" />
+                    <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" OnClick="@(() => ManageFormDialog("ReportAccess",true,@context.Report.ReportId,context.Report.ReportGuid, context.Report.ReportName))" />
                 </MudTd>
             </RowTemplate>
             <PagerContent>
                 <MudTablePager />
             </PagerContent>
-        </MudTable>*@
+        </MudTable>
 
     </MudTabPanel>
 </MudTabs>
