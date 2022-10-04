@@ -39,7 +39,7 @@
     protected override async Task OnInitializedAsync() { lstUser = await AdminSvc.GetAllUser(); lstTenant = await AdminSvc.GetAllTenant(); }
     private async Task GetAllMenu() { lstMenu = await AdminSvc.GetAllMenu(); }
     private async Task GetAllReport() { lstReport = await AdminSvc.GetAllReport(); }
-    private async Task GetAllReportAccess() { lstAccess = await AdminSvc.GetAllAccess(); }
+    private async Task GetAllReportAccess() { lstReport = await AdminSvc.GetAllReport();/*lstAccess = await AdminSvc.GetAllAccess(); GetAllReport();*/ }
     private async Task GetAllUser() { lstUser = await AdminSvc.GetAllUser(); }
 
 
@@ -334,17 +334,15 @@
 
     </MudTabPanel>
     <MudTabPanel Text="Access" OnClick="@GetAllReportAccess">
-        <MudButton Class="m-2" Style="float:right" OnClick="@(() => ManageFormDialog("ReportAccess",true))" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Add" Color="Color.Info" Size="Size.Small">Add Access</MudButton>
-
-        <MudTable Items="@lstAccess" Dense="true" Hover="true" Bordered="true" Striped="true">
+        <MudTable Items="@lstReport" Dense="true" Hover="true" Bordered="true" Striped="true">
             <HeaderContent>
                 <MudTh>Report Name</MudTh>
                 <MudTh>Action</MudTh>
             </HeaderContent>
             <RowTemplate>
-                <MudTd>@context.Report.ReportName</MudTd>
+                <MudTd>@context.ReportName</MudTd>
                 <MudTd>
-                    <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" OnClick="@(() => ManageFormDialog("ReportAccess",true,@context.Report.ReportId,context.Report.ReportGuid, context.Report.ReportName))" />
+                    <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" OnClick="@(() => ManageFormDialog("ReportAccess",true,@context.ReportId,context.ReportGuid, context.ReportName))" />
                 </MudTd>
             </RowTemplate>
             <PagerContent>
