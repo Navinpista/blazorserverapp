@@ -15,18 +15,18 @@
 <h3>ROI Power BI Report</h3>
 
 <div>
-<MudPaper Class="d-flex pa-2" Outlined="true">
-    <MudDatePicker Class="pa-1 mr-16" DisableToolbar="true" Label="From" Editable="true" Mask="@(new DateMask("MM/dd/yyyy"))" DateFormat="MM/dd/yyyy" Placeholder="MM/dd/yyyy" />
-    <MudDatePicker Class="pa-1 mr-16" DisableToolbar="true" Label="To" Editable="true" Mask="@(new DateMask("MM/dd/yyyy"))" DateFormat="MM/dd/yyyy" Placeholder="MM/dd/yyyy" />
-    <MudButton Class="pa-1 mr-16" Style="height:40px;margin-top:20px" Variant="Variant.Filled" Color="Color.Primary">Get Report</MudButton>
+    <MudPaper Class="d-flex pa-2" Outlined="true">
+        <MudDatePicker Class="pa-1 mr-16" DisableToolbar="true" Label="From" Editable="true" Mask="@(new DateMask("MM/dd/yyyy"))" DateFormat="MM/dd/yyyy" Placeholder="MM/dd/yyyy" />
+        <MudDatePicker Class="pa-1 mr-16" DisableToolbar="true" Label="To" Editable="true" Mask="@(new DateMask("MM/dd/yyyy"))" DateFormat="MM/dd/yyyy" Placeholder="MM/dd/yyyy" />
+        <MudButton Class="pa-1 mr-16" Style="height:40px;margin-top:20px" Variant="Variant.Filled" Color="Color.Primary">Get Report</MudButton>
 
-</MudPaper>
-<br />
-@*</MudAppBar>*@
+    </MudPaper>
+    <br />
+    @*</MudAppBar>*@
 
-<div style="width:100%;height:600px;max-width: 2000px" id="divReport" @ref="@PowerBIElement">
-    <MudProgressCircular Color="Color.Default" Indeterminate="true" />
-</div>
+    <div style="width:100%;height:600px;max-width: 2000px" id="divReport" @ref="@PowerBIElement">
+        <MudProgressCircular Color="Color.Default" Indeterminate="true" />
+    </div>
 </div>
 
 @code {
@@ -89,14 +89,53 @@
                     {
                         var dashboard = await client.Dashboards.GetDashboardAsync(new Guid(workspaceId), new Guid(reportId));
                         var tokenResponse = await client.Dashboards.GenerateTokenAsync(new Guid(workspaceId), dashboard.Id, generateTokenRequestParameters);
-                        await BIReportinterop.CreateReport(JSRuntime, PowerBIElement, tokenResponse.Token, dashboard.EmbedUrl, dashboard.Id.ToString(),"dashboard");
+                        await BIReportinterop.CreateReport(JSRuntime, PowerBIElement, tokenResponse.Token, dashboard.EmbedUrl, dashboard.Id.ToString(), "dashboard");
                     }
                     else
 
                     {
                         var report = await client.Reports.GetReportInGroupAsync(new Guid(workspaceId), new Guid(reportId));
-                        var tokenResponse = await client.Reports.GenerateTokenAsync(new Guid(workspaceId), new Guid(reportId), generateTokenRequestParameters);
-                        await BIReportinterop.CreateReport(JSRuntime, PowerBIElement, tokenResponse.Token, report.EmbedUrl, report.Id.ToString(),"report");
+                        var datasets = await client.Datasets.GetDatasetInGroupAsync(new Guid(workspaceId), report.DatasetId);
+                        //GenerateTokenRequest generateTokenRequestParameters;
+                        //var username = await GetUsernameValue();
+
+
+
+                        //var d = client.Datasets.GetDatasetUsersInGroup(new Guid(workspaceId), "56b6cd6d-7280-4501-b889-0b18dcf6aee2");// report.DatasetId);
+
+                        //var d1 = client.Datasets.GetDatasetsInGroup(new Guid(workspaceId));
+
+                        //var d2 = client.Datasets.GetParameters(new Guid(workspaceId), report.DatasetId);
+
+
+                        //string roles = "scorecarduser";
+                        //var rolesList = new List<string>();
+                        //rolesList.AddRange(roles.Split(','));
+
+
+                        var rls = new EffectiveIdentity();
+                        rls.Roles = new List<string> { "scorecarduser" };
+                        rls.Datasets = new List<string> { report.DatasetId };
+                        rls.Username = "09/01/2014,12/31/2014";
+                        rls.CustomData = "10/01/2014";
+
+                        //rls.Reports = new List<string>{report.Id}
+
+
+                        // Generate Embed Token with effective identities.
+                        var tokenParams = new GenerateTokenRequest();
+                        tokenParams.AccessLevel = TokenAccessLevel.View;
+                        tokenParams.Identities = new List<EffectiveIdentity> { rls };
+                        tokenParams.DatasetId = report.DatasetId;
+
+
+                        var tokenResponse = client.Reports.GenerateToken(
+                            new Guid(workspaceId),
+                            new Guid(reportId),
+                            tokenParams);
+
+                        //var tokenResponse = await client.Reports.GenerateTokenAsync(new Guid(workspaceId), new Guid(reportId), generateTokenRequestParameters);
+                        await BIReportinterop.CreateReport(JSRuntime, PowerBIElement, tokenResponse.Token, report.EmbedUrl, report.Id.ToString(), "report");
                     }
 
                 }
