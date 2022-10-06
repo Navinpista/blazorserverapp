@@ -16,9 +16,9 @@
 
 <div>
     <MudPaper Class="d-flex pa-2" Outlined="true">
-        <MudDatePicker Class="pa-1 mr-16" DisableToolbar="true" Label="From" Editable="true" Mask="@(new DateMask("MM/dd/yyyy"))" DateFormat="MM/dd/yyyy" Placeholder="MM/dd/yyyy" />
-        <MudDatePicker Class="pa-1 mr-16" DisableToolbar="true" Label="To" Editable="true" Mask="@(new DateMask("MM/dd/yyyy"))" DateFormat="MM/dd/yyyy" Placeholder="MM/dd/yyyy" />
-        <MudButton Class="pa-1 mr-16" Style="height:40px;margin-top:20px" Variant="Variant.Filled" Color="Color.Primary">Get Report</MudButton>
+        <MudDatePicker @bind-Date="@fromDate" Class="pa-1 mr-16" DisableToolbar="true" Label="From" Editable="true" Mask="@(new DateMask("MM/dd/yyyy"))" DateFormat="MM/dd/yyyy" Placeholder="MM/dd/yyyy" />
+        <MudDatePicker @bind-Date="@toDate" Class="pa-1 mr-16" DisableToolbar="true" Label="To" Editable="true" Mask="@(new DateMask("MM/dd/yyyy"))" DateFormat="MM/dd/yyyy" Placeholder="MM/dd/yyyy" />
+        <MudButton Class="pa-1 mr-16" Variant="Variant.Filled" Color="Color.Primary" @onclick=FetchReport>Get Report</MudButton>
 
     </MudPaper>
     <br />
@@ -38,25 +38,37 @@
     string reportId;
     string ReportStatusHtml;
     bool IsDashboard = false;
+    public DateTime? fromDate { get; set; }
+    public DateTime? toDate { get; set; }
 
     [Parameter]
     public string reportid { get; set; }
 
-
-    //protected override async void OnParametersSet()
-    //{
-    //    Roireport rd = await ROIReportSvc.GetROIReportdetails(reportid);
-
-    //    TenantID = rd.TenantId;
-    //    ClientID = rd.ClientId;
-    //    ClientSecret = rd.ClientSecret;
-    //    workspaceId = rd.WorkspaceId;
-    //    reportId = rd.ReportId;
-    //}
+    private async void FetchReport()
+    {
+        await ShowReport(fromDate?.ToString("MM'/'dd'/'yyyy"), toDate?.ToString("MM'/'dd'/'yyyy"));
+    }
 
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        if (firstRender)
+        {
+            await ShowReport(null, null);
+        }
+    }
+
+    private async Task ShowReport(string fromdate, string todate)
+    {
+        if (string.IsNullOrEmpty(fromdate))
+        {
+            fromdate = DateTime.MinValue.ToString("MM'/'dd'/'yyyy");
+        }
+
+        if (string.IsNullOrEmpty(todate))
+        {
+            todate = DateTime.Now.ToString("MM'/'dd'/'yyyy");
+        }
 
         ROI_BI_Lib.Models.Report rd = await ROIReportSvc.GetROIReportdetails(reportid);
 
@@ -70,13 +82,8 @@
             reportId = rd.ReportGuid;
             IsDashboard = rd.IsDashboard.Value;
 
-            //if (firstRender)
-            //{
             try
             {
-                //var result = new PowerBIEmbedConfig();
-
-
                 AuthenticationResult authenticationResult = await DoAuthentication();
                 var tokenCredentials = new TokenCredentials(authenticationResult.AccessToken, "Bearer");
                 var generateTokenRequestParameters = new GenerateTokenRequest(accessLevel: "view");
@@ -96,33 +103,16 @@
                     {
                         var report = await client.Reports.GetReportInGroupAsync(new Guid(workspaceId), new Guid(reportId));
                         var datasets = await client.Datasets.GetDatasetInGroupAsync(new Guid(workspaceId), report.DatasetId);
-                        //GenerateTokenRequest generateTokenRequestParameters;
-                        //var username = await GetUsernameValue();
-
-
-
-                        //var d = client.Datasets.GetDatasetUsersInGroup(new Guid(workspaceId), "56b6cd6d-7280-4501-b889-0b18dcf6aee2");// report.DatasetId);
-
-                        //var d1 = client.Datasets.GetDatasetsInGroup(new Guid(workspaceId));
-
-                        //var d2 = client.Datasets.GetParameters(new Guid(workspaceId), report.DatasetId);
-
-
-                        //string roles = "scorecarduser";
-                        //var rolesList = new List<string>();
-                        //rolesList.AddRange(roles.Split(','));
 
 
                         var rls = new EffectiveIdentity();
-                        rls.Roles = new List<string> { "scorecarduser" };
-                        rls.Datasets = new List<string> { report.DatasetId };
-                        rls.Username = "09/01/2014,12/31/2014";
-                        rls.CustomData = "10/01/2014";
 
-                        //rls.Reports = new List<string>{report.Id}
-
-
-                        // Generate Embed Token with effective identities.
+                        if (!string.IsNullOrEmpty(fromdate) && !string.IsNullOrEmpty(todate))
+                        {
+                            rls.Roles = new List<string> { "scorecarduser" };
+                            rls.Datasets = new List<string> { report.DatasetId };
+                            rls.Username = $"{fromdate},{todate}";
+                        }
                         var tokenParams = new GenerateTokenRequest();
                         tokenParams.AccessLevel = TokenAccessLevel.View;
                         tokenParams.Identities = new List<EffectiveIdentity> { rls };
