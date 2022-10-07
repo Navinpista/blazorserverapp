@@ -46,7 +46,6 @@
   <ItemGroup>
     <Content Remove="App.razor" />
     <Content Remove="appsettings.Development.json" />
-    <Content Remove="appsettings.json" />
     <Content Remove="_Imports.razor" />
   </ItemGroup>
 
